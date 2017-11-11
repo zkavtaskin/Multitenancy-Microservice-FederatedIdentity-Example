@@ -1,4 +1,4 @@
-# Multitenancy, Microservice and FederatedIdentity Example
+# Multitenancy, Microservice and Federated Identity Example
 
 **Repository objective:** 
 To supplement blog articles on multitenancy, microservices and federated identity (see below), and to create easy to follow code repository that makes sense (if it still makes no sense then please do let me know). 
