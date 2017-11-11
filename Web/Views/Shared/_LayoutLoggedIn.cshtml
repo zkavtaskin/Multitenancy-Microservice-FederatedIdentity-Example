@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+    @RenderSection("Scripts", false)
+    @Scripts.Render("~/bundles/layout")
+}
+
+<div class="pure-container" data-effect="pure-effect-slide">
+    <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left" />
+
+    <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left">
+        <span class="pure-toggle-icon"></span>
+        <span class="pure-toggle-title">MENU</span>
+    </label>
+
+    <div class="side-bar"></div>
+
+    <nav class="pure-drawer" data-position="left">
+        <div class="top">
+            <img src="~/Content/themes/base/images/logo.png" title="stop the line logo" />
+            <div class="links">
+                <ul class="color-coded">
+                    <li class="menu-dashboard">@Html.ActionLink("DASHBOARD", "Index", "Dashboard")</li>
+                    <li class="menu-production-lines">@Html.ActionLink("PRODUCTION LINES", "Index", "Groups")</li>
+
+                    @if(ViewBag.UserIsManager)
+                    { 
+                        <li class="menu-create-production-lines">@Html.ActionLink("CREATE PRODUCTION LINE", "Create", "Groups")</li>
+                        <li class="menu-users">@Html.ActionLink("SETTINGS", "Index", "TenantSettings")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">
+            <div id="identity" class="identity">
+                <span class="circle @ViewBag.UserInitials.ToLower()[0]">@ViewBag.UserInitials</span>
+                <div>
+                    <label>@ViewBag.UserFullName </label>
+                    <img id="cog" src="~/Content/themes/base/images/cog.png" title="Settings" />
+                </div>
+            </div>
+            <div id="settings" class="actions">
+                <ul>
+                    <li>@Html.ActionLink("SETTINGS", "Index", "UserSettings", null, new { @class = "settings"  })</li>
+                    <li>@Html.ActionLink("LOGOUT", "Logout", "Login", null, new { @class = "logout"  })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pure-pusher-container">
+        <div class="pure-pusher">
+                @RenderBody()
+        </div>
+    </div>
+
+    <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
+</div>

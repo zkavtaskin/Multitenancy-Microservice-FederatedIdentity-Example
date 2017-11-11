@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53D93ED8-3449-40F3-8290-BC241812B39B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Server</RootNamespace>
+    <AssemblyName>Server</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.2.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGridMail">
+      <HintPath>..\packages\Sendgrid.5.1.0\lib\SendGridMail.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\ConfigManager\CloudConfigurationProvider.cs" />
+    <Compile Include="Core\ConfigManager\IConfigurationProvider.cs" />
+    <Compile Include="Core\Container\ServiceLocator.cs" />
+    <Compile Include="Core\Domain\DomainEvents.cs" />
+    <Compile Include="Core\Domain\Handle.cs" />
+    <Compile Include="Core\Domain\IAggregateRoot.cs" />
+    <Compile Include="Core\Domain\IDomainEvent.cs" />
+    <Compile Include="Core\Message\Email\EmailMessage.cs" />
+    <Compile Include="Core\Message\Email\EmailTemplate.cs" />
+    <Compile Include="Core\Message\Email\MemDebugEmailDispatcher.cs" />
+    <Compile Include="Core\Message\Message.cs" />
+    <Compile Include="Core\Message\MessageFormater.cs" />
+    <Compile Include="Core\Message\MessageTemplate.cs" />
+    <Compile Include="Core\Message\MessageTemplateFactory.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\MultitenantFilter.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\NHConfiguration.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\NHRepositoryOfTEntity.cs" />
+    <Compile Include="Domain\Tenants\TenantCreatedHandler.cs" />
+    <Compile Include="Domain\Tenants\TenantCreated.cs" />
+    <Compile Include="Infrastructure\Repository\ConfigurationMultiTenancy.cs" />
+    <Compile Include="Infrastructure\Repository\Configuration.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\NHSharedDatabaseMultiTenancyInterceptor.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\NHUnitOfWork.cs" />
+    <Compile Include="Core\Repository\Adapters\NHibernate\NHUnitOfWorkMultitenancy.cs" />
+    <Compile Include="Core\Repository\IRepoistoryOfTEntity.cs" />
+    <Compile Include="Core\Repository\IUnitOfWork.cs" />
+    <Compile Include="Core\Repository\Adapters\Memory\MemRepositoryOfTEntity.cs" />
+    <Compile Include="Core\Repository\Adapters\Memory\MemUnitOfWork.cs" />
+    <Compile Include="Core\Time\DefaultTimeProvider.cs" />
+    <Compile Include="Core\Time\TestTimeProvider.cs" />
+    <Compile Include="Core\Time\TimeProvider.cs" />
+    <Compile Include="Core\Web\WindsorControllerFactory.cs" />
+    <Compile Include="Core\Xml\Serialization.cs" />
+    <Compile Include="Domain\ConfigKeys.cs" />
+    <Compile Include="Domain\Exceptions\ValidationException.cs" />
+    <Compile Include="Domain\Groups\Group.cs" />
+    <Compile Include="Core\Message\Email\Email.cs" />
+    <Compile Include="Domain\Groups\GroupDomainService.cs" />
+    <Compile Include="Domain\Message\Email\Template.cs" />
+    <Compile Include="Domain\Stops\Resumed.cs" />
+    <Compile Include="Domain\Stops\ResumedHandler.cs" />
+    <Compile Include="Domain\Stops\StopDomainService.cs" />
+    <Compile Include="Domain\StringValidation.cs" />
+    <Compile Include="Domain\Tenants\TenantDomainService.cs" />
+    <Compile Include="Domain\Stops\Stop.cs" />
+    <Compile Include="Domain\Stops\Stopped.cs" />
+    <Compile Include="Domain\Stops\StoppedHandler.cs" />
+    <Compile Include="Domain\Tenants\Tenant.cs" />
+    <Compile Include="Domain\Users\Contact.cs" />
+    <Compile Include="Domain\Users\UserContact.cs" />
+    <Compile Include="Domain\Users\User.cs" />
+    <Compile Include="Core\Message\Email\EmailMessageFormater.cs" />
+    <Compile Include="Core\Message\MessageGenerator.cs" />
+    <Compile Include="Domain\Message\Email\EmailTemplate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailTemplate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Users\UserDomainService.cs" />
+    <Compile Include="Domain\Users\UserInvite.cs" />
+    <Compile Include="Domain\Users\UserInvited.cs" />
+    <Compile Include="Domain\Users\UserInvitedHandler.cs" />
+    <Compile Include="Core\Message\Email\SendGridEmailDispatcher.cs" />
+    <Compile Include="Core\Message\TokenGenerator.cs" />
+    <Compile Include="Core\Message\Email\IEmailDispatcher.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\GroupMap.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\StopMap.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\TenantMap.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\UserContactMap.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\UserInviteMap.cs" />
+    <Compile Include="Infrastructure\Repository\Mappings\UserMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Groups\GroupInvitedUserDto.cs" />
+    <Compile Include="Service\Groups\GroupDto.cs" />
+    <Compile Include="Service\Groups\GroupService.cs" />
+    <Compile Include="Service\Groups\GroupUserDto.cs" />
+    <Compile Include="Service\Groups\IGroupService.cs" />
+    <Compile Include="Service\Groups\Map.cs" />
+    <Compile Include="Service\MappingConfig.cs" />
+    <Compile Include="Service\Stops\Map.cs" />
+    <Compile Include="Service\Stops\StopDto.cs" />
+    <Compile Include="Service\Stops\IStopService.cs" />
+    <Compile Include="Service\Stops\StopService.cs" />
+    <Compile Include="Service\TenantContext.cs" />
+    <Compile Include="Service\ITenantContextFactory.cs" />
+    <Compile Include="Service\Tenants\ITenantService.cs" />
+    <Compile Include="Service\Tenants\Map.cs" />
+    <Compile Include="Service\Tenants\TenantService.cs" />
+    <Compile Include="Service\Tenants\TenantDto.cs" />
+    <Compile Include="Service\Users\Contact.cs" />
+    <Compile Include="Service\Users\ContactDto.cs" />
+    <Compile Include="Service\Users\IUserService.cs" />
+    <Compile Include="Service\Users\Map.cs" />
+    <Compile Include="Service\Users\UserDto.cs" />
+    <Compile Include="Service\Users\UserInviteDto.cs" />
+    <Compile Include="Service\Users\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Domain\Message\Email\Raw\email-stop.html" />
+    <None Include="Domain\Message\Email\Raw\template-format-test.xml" />
+    <None Include="Domain\Message\Email\Raw\email-resume.html" />
+    <None Include="Domain\Message\Email\Raw\email-invite-user.html" />
+    <None Include="Domain\Message\Email\Raw\email-tenant-created.html" />
+    <Content Include="SqlRolling\baseline.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\Message\Email\EmailTemplate.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailTemplate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

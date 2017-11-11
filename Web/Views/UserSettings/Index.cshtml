@@ -1,0 +1,55 @@
+﻿@model Web.Models.UserSettingModel
+
+@{
+    ViewBag.Title = "SETTINGS";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="second-column">
+    <h2>
+        <span></span>
+        SETTINGS
+    </h2>
+    <h1>YOUR ACCOUNT SETTINGS</h1>
+    <div class="container">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <div>
+                    @Html.TextBoxFor(model => model.FullName, new { placeholder = "Your Full Name" })
+                    @Html.ValidationMessageFor(model => model.FullName)
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = "Your Email Address" })
+                    @Html.ValidationMessageFor(model => model.Email)
+
+                    @if (Model.EmailIsAlreadyUsed)
+                    {
+                        @Html.ValidationMessageFor(x => x.EmailIsAlreadyUsed, "Email address is already in use")
+                    }
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(model => model.PrimaryNumber, new { placeholder = "Your Primary Number" })
+                    @Html.ValidationMessageFor(model => model.PrimaryNumber)
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(model => model.SecondaryNumber, new { placeholder = "Your Secondary Number" })
+                    @Html.ValidationMessageFor(model => model.SecondaryNumber)
+                </div>
+
+                <input type="submit" value="UPDATE" />
+
+            </fieldset>
+        }
+
+    </div>
+</div>
+
+
+

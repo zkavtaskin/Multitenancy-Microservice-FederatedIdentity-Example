@@ -1,0 +1,27 @@
+﻿@model Web.Models.Dashboard.Model
+
+@{
+    ViewBag.Title = "DASHBOARD";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div id="display" class="dashboard">
+    @Html.Partial("Dashboard", Model)
+</div>
+
+
+<a href="@Url.Action("Index", "Broadcast")" id="openPlasma" title="DISPLAY SCREEN VIEW"></a>
+
+<span id="connectionInformation">Error connecting, trying again...</span>
+
+<script type="text/javascript">
+    var urlDataSource = "@Url.Action("Dashboard")";
+    var tenantFriendlyNameCurrent = '@ViewBag.TenantFriendlyName';
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery.signalR-2.2.0.min.js")
+    @Scripts.Render("~/signalr/hubs")
+
+    @Scripts.Render("~/bundles/display")
+}

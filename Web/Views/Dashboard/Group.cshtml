@@ -1,0 +1,24 @@
+﻿@model Web.Models.GroupModel
+
+<div class="group @Model.State @(Model.CanStop ? "CanStop" : "")">
+
+    @Html.Partial("GroupState", Model)
+
+    @if (Model.State == Web.Models.Group.State.Working && Model.CanStop)
+    {
+        <div class="back">
+            <h2>@Model.Name</h2>
+            <p>Tell your team why production needs to stop e.g.:</p>
+            <ul>
+                <li>Build server is down</li>
+                <li>Extremely defective software is being produced</li>
+                <li>Requirements are unclear and we’re unable to continue</li>
+                <li>Production is severely behind schedule</li>
+            </ul>
+            <p>Tell your team why production needs to stop:</p>
+
+            @Html.Partial("GroupStop", new Web.Models.Dashboard.StopModel() { GroupId = Model.GroupId })
+
+        </div>
+    }
+</div>

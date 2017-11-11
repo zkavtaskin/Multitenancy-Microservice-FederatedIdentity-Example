@@ -1,0 +1,9 @@
+﻿@model Web.Models.TenantSettings.TimeModel
+
+
+@using (Html.BeginForm("ChangeTime", "TenantSettings"))
+{
+    @Html.DropDownListFor(m => m.TimeZoneId,
+           new SelectList(Model.TimeZones, "Id", "DisplayName")
+                  )
+}

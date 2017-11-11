@@ -1,0 +1,46 @@
+﻿@model Web.Models.Dashboard.UserStoppedModel
+
+<div class="notification timer">
+
+    <div class="status">
+        <span class="Stopped"></span>
+    </div>
+    <h2>@Model.Group.Name</h2>
+    <span>YOU'VE STOPPED PRODUCTION</span>
+    <label>Time:</label>
+    <value>@Model.Group.DownTime.Value.ToString(@"dd\.hh\:mm\:ss")</value>
+    <input type="hidden" id="stoppedDateTime" value="@Model.Group.StoppedDateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds" />
+    @using (Html.BeginForm("Resume", "Dashboard", new { stopId = Model.Group.StopId }))
+    {
+        <input type="submit" value="Resume production" />
+    }
+
+</div>
+
+<div class="contact">
+    <div class="header">
+        <h2>YOUR TEAM MATES HAVE HAVE BEEN NOTIFIED.</h2>
+        <span>Teams mates are working from home? Use contact information below to get in touch.</span>
+    </div>
+    <div class="members">
+        @foreach (Web.Models.Group.UserModel user in Model.Users)
+        {
+            <div class="card">
+                <span class="circle @user.Initials.ToLower()[0]">
+                    @user.Initials
+                </span>
+                <div class="content">
+                    <label>
+                        @user.FullName
+                    </label>
+                    <value>
+                        @user.PrimaryContact
+                    </value>
+                    <value>
+                        @user.Email
+                    </value>
+                </div>
+            </div>
+        }
+    </div>
+</div>

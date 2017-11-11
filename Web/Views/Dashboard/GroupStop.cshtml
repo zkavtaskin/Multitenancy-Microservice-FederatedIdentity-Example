@@ -1,0 +1,17 @@
+﻿@model Web.Models.Dashboard.StopModel
+
+<div class="stop">
+    @using (Html.BeginForm("Stop", "Dashboard"))
+    {
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.GroupId)
+        
+        <value>
+            @Html.TextAreaFor(model => model.Reason, new { placeholder = "Reason for stopping..." })
+            @Html.ValidationMessageFor(model => model.Reason)
+        </value>
+        
+        <input type="submit" value="STOP" />
+    }
+</div>

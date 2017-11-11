@@ -1,0 +1,53 @@
+﻿@model Web.Models.TenantSettings.UserModel
+
+<div class="card">
+    <span class="circle @Model.Initials.ToLower()[0]">
+        @Model.Initials
+    </span>
+
+    <div class="content">
+
+        <label>
+            @Model.FullName
+        </label>
+        <value>
+            @Model.Email
+        </value>
+
+        <div class="edit">
+            <div class="actions">
+
+                @if(Model.Id != ViewBag.UserId && Model.CanRemove)
+                {
+                    using (Html.BeginForm("RemoveUser", "TenantSettings"))
+                    {
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Email)
+                        <input type="submit" value="Remove" class="delete" />
+                    }
+                }
+
+                @if(!Model.IsManager)
+                {
+                    using (Html.BeginForm("AddAdmin", "TenantSettings"))
+                    {
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Email)
+                        <input type="submit" value="Give admin access" class="positive account-manager" />
+                    }
+                }
+                
+                @if (Model.IsManager && Model.Id == ViewBag.UserId)
+                {
+                    using (Html.BeginForm("RemoveAdmin", "TenantSettings"))
+                    {
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Email)
+                        <input type="submit" value="Remove admin access" class="positive" />
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

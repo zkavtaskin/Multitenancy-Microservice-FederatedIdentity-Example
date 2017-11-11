@@ -1,0 +1,77 @@
+﻿@model Web.Models.UserSetupModel
+
+@{
+    ViewBag.Title = "USER SIGN UP";
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.cshtml";
+}
+
+
+<div class="many-columns">
+
+@using (Html.BeginForm("Create", "UserSetup"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Key)
+    @Html.HiddenFor(model => model.Email)
+
+    <div class="second-column" style="width:350px;">
+        <h2>
+            <span></span>
+            USER SIGN UP
+        </h2>
+        <h1>LET'S BEGIN</h1>
+        <p>Your account will be registered to: <strong>@Model.Email</strong></p>
+        <div class="container">
+            <fieldset>
+                <div>
+                    @Html.TextBoxFor(model => model.FullName, new { placeholder = "Your Full Name" })
+                    @Html.ValidationMessageFor(model => model.FullName)
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(model => model.PrimaryNumber, new { placeholder = "Your Primary Number" })
+                    @Html.ValidationMessageFor(model => model.PrimaryNumber)
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(model => model.SecondaryNumber, new { placeholder = "Your Secondary Number" })
+                    @Html.ValidationMessageFor(model => model.SecondaryNumber)
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="third-column user-setup">
+        <h3>THE OATH</h3>
+        <p>
+            With the power invested in Stop The Line you are agreeing to:
+        </p>
+        <div class="container">
+            <ul>
+                <li>
+                    As a <strong>stopper</strong>
+                    <ul>
+                        <li>Only Stop The Line if you need help</li>
+                        <li>Never shy away from the STOP button</li>
+                        <li>Get the job done</li>
+                    </ul>
+                </li>
+                <li>
+                    As a <strong>responder</strong>
+                    <ul>
+                        <li>Drop what you&#8217;re doing and help the stopper</li>
+                        <li>Seriously, we mean it. Drop what you&#8217;re doing</li>
+                        <li>DROP IT! (or call the stopper if you&#8217;re out of office)</li>
+                    </ul>
+                </li>
+            </ul>
+            <input type="submit" value="I Agree + Submit" class="form-submit" />
+        </div>
+    </div>
+
+
+}
+</div>
+

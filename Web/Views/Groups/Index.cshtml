@@ -1,0 +1,30 @@
+﻿@model Web.Models.Group.GroupsModel
+@{
+    ViewBag.Title = "PRODUCTION LINES";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="second-column">
+    <h2>
+        <span class="header-production-lines"></span>
+        PRODUCTION LINES
+    </h2>
+    <h1>MANAGE YOUR PRODUCTION</h1>
+    <div class="container">
+        @foreach (Web.Models.Group.Model group in Model.Groups)
+        {
+            @Html.Partial("Group", group)
+        }
+
+        @if (ViewBag.UserIsManager)
+        {
+            @Html.ActionLink("Add new production line", "Create", null, new { @class = "add-new" })
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/group")
+}
+

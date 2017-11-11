@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "LOGGED OUT";
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.cshtml";
+}
+
+<div class="second-column">
+    <h1>SEE YOU LATER!</h1>
+    <div class="container">
+        <p>
+            You are now logged out.
+            Want back in, @Html.ActionLink("Login", "Index", "Dashboard"). 
+        </p>
+    </div>
+
+</div>
+

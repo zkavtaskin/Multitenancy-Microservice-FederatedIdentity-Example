@@ -1,0 +1,71 @@
+﻿@model Web.Models.TenantCreateModel
+
+@{
+    ViewBag.Title = "CREATE AN ACCOUNT";
+    Layout = "~/Views/Shared/_LayoutNotLoggedIn.cshtml";
+}
+
+    <div class="second-column">
+
+    @using (Html.BeginForm("RelativeTenantSignUpUrl", "home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+            <h1>CREATE AN ACCOUNT</h1>
+            <p>IT'S COMPLETELY FREE</p>
+            <div class="container">
+                <fieldset>
+                    <div>
+                        @Html.TextBoxFor(m => m.TenantName, new { placeholder = "Organisation / Company" })
+                        @Html.ValidationMessageFor(model => model.TenantName)
+                    </div>
+
+                    <div class="preview">
+                        <span id="url">@Request.Url.GetLeftPart(UriPartial.Authority)/</span>
+                        @Html.TextBoxFor(m => m.TenantFriendlyName, new { placeholder = "Your Unique URL" })
+                        @Html.ValidationMessageFor(model => model.TenantFriendlyName)
+                        <span id="available">Available!</span>
+                        <span id="unavailable">Not Available!</span>
+                    </div>
+
+                    <div>
+                        @Html.DropDownListFor(m => m.TimeZoneId,
+                        new SelectList(Model.TimeZones, "Id", "DisplayName"))
+                    </div>
+
+                    <div>
+                        @Html.TextBoxFor(m => m.UserEmail, new { placeholder = "Your Email Address" })
+                        @Html.ValidationMessageFor(model => model.UserEmail)
+                    </div>
+
+                    <div>
+                        @Html.TextBoxFor(m => m.ClientID, new { placeholder = "Identity Provider Client Id" })
+                        @Html.ValidationMessageFor(model => model.ClientID)
+                    </div>
+
+                    <div>
+                        @Html.TextBoxFor(m => m.Authority, new { placeholder = "Identity Provider Authority" })
+                        @Html.ValidationMessageFor(model => model.Authority)
+                    </div>
+
+                    <input type="submit" value="CREATE ACCOUNT" />
+
+                </fieldset>
+
+
+                <script type="text/javascript">
+                    var urlGenerateFriendlyName = "@Url.Action("GenerateFriendlyName")";
+                    var urlTenantFriendlyNameCheck = "@Url.Action("TenantFriendlyNameCheck")";
+                </script>
+            </div>
+
+        }
+
+
+    </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tenant")
+}

@@ -1,0 +1,54 @@
+﻿<script id="user_doesnt_exist" type="x-tmpl-mustache">
+    <li class="invite">
+        <span class="label">invite</span>
+        <span class="value">{{value}}</span>
+    </li>
+</script>
+
+<script id="user_inviting" type="x-tmpl-mustache">
+    <div class="card">
+        <input type="hidden" id="email" value="{{value}}" />
+        <div class="content full">
+            <label>{{value}}</label>
+            <value>GOING TO INVITE</value>
+            <div class="edit">
+                <div class="actions">
+                    <input type="button" id="delete" value="Remove" class="delete" />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="user_invited" type="x-tmpl-mustache">
+    <div class="card">
+        <input type="hidden" id="email" value="{{Email}}" />
+        <div class="content full">
+            <label>{{Email}}</label>
+            <value>INVITATION SENT - PENDING</value>
+            <div class="edit">
+                <div class="actions">
+                    <input type="button" id="delete" value="Remove" class="delete" />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="user_member" type="x-tmpl-mustache">
+    <div class="card">
+        <input type="hidden" id="email" value="{{Email}}" />
+        <span class="circle {{InitialFirstLetter}}">
+            {{Initials}}
+        </span>
+        <div class="content">
+            <label>{{FullName}}</label>
+            <value>{{Email}}</value>
+            <div class="edit">
+                <div class="actions">
+                    <input type="button" id="delete" value="Remove" class="delete" />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

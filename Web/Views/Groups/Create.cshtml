@@ -1,0 +1,54 @@
+﻿@model Web.Models.Group.CreateModel
+
+@{
+    ViewBag.Title = "CREATE PRODUCTION LINE";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="second-column">
+    <h2>
+        <span class="header-create-production"></span>
+        CREATE PRODUCTION LINE
+    </h2>
+    <h1>ADD NEW PRODUCTION LINE</h1>
+    <div class="container">
+        @using (Html.BeginForm("Create", "Groups", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <div>
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = "Production Line Name" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                    @if (!Model.NameIsAvailable)
+                    {
+                        @Html.ValidationMessageFor(x => x.NameIsAvailable, "Production Line Name is already used.")
+                    }
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Invite)
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.Invite, new { placeholder = "Email Address" })
+                </div>
+
+                @Html.HiddenFor(model => model.Invited)
+
+                <ul id="groupUsers"></ul>
+
+                <input type="submit" value="CREATE" />
+            </fieldset>
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    var urlLineSearchDataSource = "@Url.Action("Search")";
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/group-create")
+}

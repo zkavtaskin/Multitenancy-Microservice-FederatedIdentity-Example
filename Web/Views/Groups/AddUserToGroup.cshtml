@@ -1,0 +1,16 @@
+﻿@model Web.Models.Group.UserInviteModel
+
+@using (Html.BeginForm("AddUserToGroup", "Groups", FormMethod.Post, new { id = "addnewuser" }))
+{
+
+    <fieldset>
+
+        @Html.HiddenFor(model => model.Email, new { id = "groupUserInviteModel_Email" })
+        @Html.HiddenFor(model => model.GroupId)
+
+        <div>
+            <input type="text" id="Invite" placeholder="Email Address" />
+        </div>
+    </fieldset>
+
+}

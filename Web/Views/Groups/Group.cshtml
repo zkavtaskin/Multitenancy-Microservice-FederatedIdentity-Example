@@ -1,0 +1,31 @@
+﻿@model Web.Models.Group.Model
+
+<div class="card">
+    @using (Html.BeginForm("RemoveGroup", "Groups"))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+        
+        <span class="circle-group-status @Model.State" > </span>
+        
+        <div class="content">
+            <label>
+                <a href="@Url.Action("View", new { groupId = Model.Id })">
+                    @Model.Name
+                </a>
+            </label>
+            <value>
+                @Model.NumberOfMembers Users, Created on @Model.DateCreated.ToString("dd/MM/yyyy")
+            </value>
+            @if(ViewBag.UserIsManager)
+            { 
+                <div class="edit">
+                    <div class="actions">
+                        <input type="submit" value="Remove" class="delete" />
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+

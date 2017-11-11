@@ -1,0 +1,21 @@
+﻿@model Web.Models.Broadcast.Model
+
+@if (!Model.Groups.Any())
+{
+    <div id="allworking">
+        <div id="central">
+            <span>ALL PRODUCTION LINES ARE...</span>
+            <img src="~/Content/themes/base/images/status-happy.png" />
+            <span>RUNNING WITHOUT <br /> A HITCH!</span>
+        </div>
+    </div>
+}
+else
+{
+    foreach (Web.Models.GroupModel group in Model.Groups)
+    {
+        <div class="group Stopped">
+            @Html.Partial("GroupStopped", group)
+        </div>
+    }
+}

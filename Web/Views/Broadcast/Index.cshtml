@@ -1,0 +1,28 @@
+﻿@model Web.Models.Broadcast.Model
+
+@{
+    ViewBag.Title = "BROADCAST";
+    Layout = "~/Views/Shared/_LayoutLoggedInNoMenu.cshtml";
+}
+
+<div id="display" class="broadcast">
+    @Html.Partial("Broadcast", Model)
+</div>
+
+<a href="@Url.Action("Index", "Dashboard")" id="closePlasma" title="EXIT DISPLAY MODE"></a>
+
+<span id="connectionInformation">Error connecting, trying again...</span>
+
+<script type="text/javascript">
+    var urlDataSource = "@Url.Action("Broadcast")";
+    var tenantFriendlyNameCurrent = '@ViewBag.TenantFriendlyName';
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery.signalR-2.2.0.min.js")
+    @Scripts.Render("~/signalr/hubs")
+
+    @Scripts.Render("~/bundles/display")
+    @Scripts.Render("~/bundles/broadcast")
+}

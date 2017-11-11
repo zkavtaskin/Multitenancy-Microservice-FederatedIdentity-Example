@@ -1,0 +1,29 @@
+﻿@model Web.Models.TenantSettings.UserInviteModel
+
+<div class="card">
+    <div class="content full">
+        <label>
+            @Model.Email
+        </label>
+        <value>
+            Invited @Model.TotalHoursSinceInvite hours ago
+        </value>
+
+        <div class="edit">
+            <div class="actions">
+                @using (Html.BeginForm("RemoveInvitedUser", "TenantSettings"))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Email)
+                    <input type="submit" value="Remove" class="delete" />
+                }
+
+                @using (Html.BeginForm("ResendVerification", "TenantSettings"))
+                {
+                    @Html.HiddenFor(model => model.Id)
+                    <input type="submit" value="Resend Invite" class="positive" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

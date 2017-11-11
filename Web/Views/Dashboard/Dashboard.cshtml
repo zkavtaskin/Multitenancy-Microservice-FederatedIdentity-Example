@@ -1,0 +1,13 @@
+﻿@model Web.Models.Dashboard.Model
+
+@if (Model is Web.Models.Dashboard.GroupsStateModel)
+{
+    foreach (Web.Models.GroupModel group in ((Web.Models.Dashboard.GroupsStateModel)Model).Groups)
+    {
+        @Html.Partial("Group", group)
+    }
+}
+else
+{
+    @Html.Partial("UserStopped", (Web.Models.Dashboard.UserStoppedModel)Model)
+}

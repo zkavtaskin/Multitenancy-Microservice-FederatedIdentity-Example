@@ -1,0 +1,66 @@
+﻿@model Web.Models.Group.UserModel
+
+
+<div class="card">
+
+        @if (!Model.IsInvited)
+        {
+            <span class="circle @Model.Initials.ToLower()[0]">
+                @Model.Initials
+            </span>
+        }
+    
+        <div class="content @(Model.IsInvited ? "full" : null)">
+
+            @if (Model.IsInvited)
+            {
+                <label>
+                    @Model.Email
+                </label>
+                <value>
+                    INVITATION SENT - PENDING
+                </value>
+            }
+            else
+            {
+                <label>
+                    @Model.FullName
+                </label>
+                <value>
+                    @Model.Email
+                </value>
+            }
+
+            @if (ViewBag.UserIsManager)
+            { 
+                <div class="edit">
+                    <div class="actions">
+
+
+                        @using (Html.BeginForm("RemoveUser", "Groups"))
+                        {
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.IsInvited)
+                            @Html.HiddenFor(model => model.Email)
+                            @Html.HiddenFor(model => model.GroupId)
+
+                            <input type="submit" value="Remove" class="delete" />
+                        }
+            
+                        @if (Model.IsInvited)
+                        {
+                            using (Html.BeginForm("ResendVerification", "Groups"))
+                            {
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.Email)
+                                @Html.HiddenFor(model => model.GroupId)
+                                <input type="submit" value="Resend Invite" class="positive" />
+                            }
+                        }
+                   
+                    </div>
+                </div>
+            }
+
+        </div>
+</div>

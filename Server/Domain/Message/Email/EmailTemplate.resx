@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Resume" xml:space="preserve">
+    <value>&lt;EmailTemplate&gt;
+&lt;Subject&gt;@stopper@ has resumed the @line@ line&lt;/Subject&gt;
+&lt;BodyHtml&gt;   
+
+&lt;![CDATA[
+
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;style type="text/css"&gt;
+        body {
+            width: 100% !important;
+            font-family: Arial;
+            font-size: 10px;
+            -webkit-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        #backgroundTable {
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+        }
+
+        body, #backgroundTable {
+            background-color: #E7E7E7;
+        }
+
+        #templateContainer {
+            border: 1px solid #DDDDDD;
+            margin-top: 45px;
+        }
+
+
+        #templatePreheader {
+            background-color: #FAFAFA;
+        }
+
+        .preheaderContent div {
+            color: #505050;
+            line-height: 100%;
+            text-align: left;
+        }
+
+            .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+
+        #templateHeader {
+            background-color: #FFFFFF;
+            border-bottom: 0;
+        }
+
+        .headerContent {
+            padding: 0;
+            padding-left: 20px;
+            text-align: left;
+            vertical-align: middle;
+            background: #000000;
+        }
+
+            .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+        #headerImage {
+            height: auto;
+        }
+
+        #templateContainer, .bodyContent {
+            background-color: #FFFFFF;
+        }
+
+            .bodyContent div {
+                color: #505050;
+                font-family: Arial;
+                font-size: 14px;
+                line-height: 150%;
+                text-align: center;
+            }
+
+            .bodyContent a, .bodyContent a:visited {
+                font-size: 20px;
+                padding: 15px;
+                text-decoration: none;
+                margin-top: 20px;
+                background: #1fce6d;
+                color: white;
+                border: 3px solid #1fce6d;
+                display: block;
+            }
+
+            .bodyContent img {
+                display: inline;
+                height: auto;
+            }
+
+        #footer {
+            font-size: 14px;
+            color: #505050;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+    &lt;center&gt;
+        &lt;table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable"&gt;
+            &lt;tr&gt;
+                &lt;td align="center" valign="top"&gt;
+
+                    &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer"&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td class="headerContent" height="115"&gt;
+
+                                            &lt;img src="http://www.stoptheline.com/content/images/logo.png"
+                                                 id="headerImage campaign-icon" alt="STOP THE LINE" /&gt;
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/table&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td valign="top" class="bodyContent"&gt;
+
+
+                                            &lt;table border="0" cellpadding="20" cellspacing="0" width="100%"&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td valign="top" align="center"&gt;
+                                                        &lt;div&gt;
+
+                                                            &lt;p&gt;
+                                                                Line &lt;strong&gt;@line@&lt;/strong&gt; was resumed by &lt;strong&gt;@stopper@&lt;/strong&gt; at &lt;strong&gt;@datetime@&lt;/strong&gt;
+                                                            &lt;/p&gt;
+
+                                                            &lt;img src="http://www.stoptheline.com/content/images/status-happy.png" alt="Happy Face" height="75" width="75" /&gt;
+
+                                                            &lt;p&gt;
+                                                                To see the current status of your team and other teams just go
+                                                                to this url:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                &lt;a href="@url@/@org_friendly@"&gt;@url@/@org_friendly@&lt;/a&gt;
+                                                            &lt;/p&gt;
+
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/table&gt;
+
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+
+                                &lt;/table&gt;
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+
+                    &lt;table border="0" cellpadding="20" cellspacing="0" width="600" id="footer"&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;COPYRIGHT &amp;copy; STOP THE LINE @year@&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                    &lt;br /&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+        &lt;/table&gt;
+    &lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+
+ ]]&gt;   
+
+&lt;/BodyHtml&gt;
+
+&lt;BodyText&gt;
+
+&lt;![CDATA[
+
+Line @line@ was resumed by @stopper@ at @datetime@. 
+
+To see the current status of your team and other teams just copy and paste this links in to your browser:
+@url@/@org_friendly@
+
+ ]]&gt;   
+
+&lt;/BodyText&gt;
+&lt;/EmailTemplate&gt;</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>&lt;EmailTemplate&gt;
+&lt;Subject&gt;@stopper@ has stopped the @line@ line&lt;/Subject&gt;
+&lt;BodyHtml&gt;   
+
+&lt;![CDATA[
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;style type="text/css"&gt;
+        body {
+            width: 100% !important;
+            font-family: Arial;
+            font-size: 10px;
+            -webkit-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        #backgroundTable {
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+        }
+
+        body, #backgroundTable {
+            background-color: #E7E7E7;
+        }
+
+        #templateContainer {
+            border: 1px solid #DDDDDD;
+            margin-top: 45px;
+        }
+
+
+        #templatePreheader {
+            background-color: #FAFAFA;
+        }
+
+        .preheaderContent div {
+            color: #505050;
+            line-height: 100%;
+            text-align: left;
+        }
+
+            .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+
+        #templateHeader {
+            background-color: #FFFFFF;
+            border-bottom: 0;
+        }
+
+        .headerContent {
+            padding: 0;
+            padding-left: 20px;
+            text-align: left;
+            vertical-align: middle;
+            background: #000000;
+        }
+
+            .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+        #headerImage {
+            height: auto;
+        }
+
+        #templateContainer, .bodyContent {
+            background-color: #FFFFFF;
+        }
+
+            .bodyContent div {
+                color: #505050;
+                font-family: Arial;
+                font-size: 14px;
+                line-height: 150%;
+                text-align: center;
+            }
+
+            .bodyContent a, .bodyContent a:visited {
+                font-size: 20px;
+                padding: 15px;
+                text-decoration: none;
+                margin-top: 20px;
+                background: #1fce6d;
+                color: white;
+                border: 3px solid #1fce6d;
+                display: block;
+            }
+
+            .bodyContent img {
+                display: inline;
+                height: auto;
+            }
+
+        #footer {
+            font-size: 14px;
+            color: #505050;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+    &lt;center&gt;
+        &lt;table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable"&gt;
+            &lt;tr&gt;
+                &lt;td align="center" valign="top"&gt;
+
+                    &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer"&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td class="headerContent" height="115"&gt;
+
+                                            &lt;img src="http://www.stoptheline.com/content/images/logo.png"
+                                                 id="headerImage campaign-icon" alt="STOP THE LINE" /&gt;
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/table&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td valign="top" class="bodyContent"&gt;
+
+
+                                            &lt;table border="0" cellpadding="20" cellspacing="0" width="100%"&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td valign="top" align="center"&gt;
+                                                        &lt;div&gt;
+
+                                                            &lt;p&gt;
+                                                                Line &lt;strong&gt;@line@&lt;/strong&gt; was stopped by &lt;strong&gt;@stopper@&lt;/strong&gt;
+                                                                at &lt;strong&gt;@datetime@&lt;/strong&gt; because &lt;strong&gt;"@problem@"&lt;/strong&gt;.
+                                                            &lt;/p&gt;
+
+                                                            &lt;img src="http://www.stoptheline.com/content/images/status-sad.png" alt="Sad Face" height="75" width="75" /&gt;
+
+                                                            &lt;p style="color:#E1003A;"&gt;
+                                                                PLEASE GO TO THE LINE IMMEDIATELY TO HELP TO RESOLVE THIS ISSUE.
+                                                            &lt;/p&gt;
+                                                            &lt;p&gt;
+                                                                If you are not in the office please contact &lt;strong&gt;@stopper@&lt;/strong&gt; directly, @stopper@ number
+                                                                is &lt;strong&gt;@stopper_number@&lt;/strong&gt;.
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                To see the current status of your team and other teams just go
+                                                                to this url:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                &lt;a href="@url@/@org_friendly@"&gt;@url@/@org_friendly@&lt;/a&gt;
+                                                            &lt;/p&gt;
+
+
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/table&gt;
+
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+
+                                &lt;/table&gt;
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+
+                    &lt;table border="0" cellpadding="20" cellspacing="0" width="600" id="footer"&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;COPYRIGHT &amp;copy; STOP THE LINE @year@&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                    &lt;br /&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+        &lt;/table&gt;
+    &lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+  
+ ]]&gt;   
+
+&lt;/BodyHtml&gt;
+
+&lt;BodyText&gt;
+
+&lt;![CDATA[
+
+Line @line@ was stopped by @stopper@ at @datetime@ because "@problem@". 
+
+Please go to the line immediately to help to resolve this issue.
+
+If you are not in the office please contact @stopper@ directly, @stopper@ number is @stopper_number@
+
+To see the current status of your team and other teams just copy and paste this links in to your browser:
+@url@/@org_friendly@
+
+ ]]&gt;   
+
+&lt;/BodyText&gt;
+&lt;/EmailTemplate&gt;</value>
+  </data>
+  <data name="TenantCreated" xml:space="preserve">
+    <value>&lt;EmailTemplate&gt;
+  &lt;Subject&gt;Welcome to Stop The Line&lt;/Subject&gt;
+  &lt;BodyHtml&gt;
+
+    &lt;![CDATA[
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;style type="text/css"&gt;
+        body {
+            width: 100% !important;
+            font-family: Arial;
+            font-size: 10px;
+            -webkit-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        #backgroundTable {
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+        }
+
+        body, #backgroundTable {
+            background-color: #E7E7E7;
+        }
+
+        #templateContainer {
+            border: 1px solid #DDDDDD;
+            margin-top: 45px;
+        }
+
+
+        #templatePreheader {
+            background-color: #FAFAFA;
+        }
+
+        .preheaderContent div {
+            color: #505050;
+            line-height: 100%;
+            text-align: left;
+        }
+
+            .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+
+        #templateHeader {
+            background-color: #FFFFFF;
+            border-bottom: 0;
+        }
+
+        .headerContent {
+            padding: 0;
+            padding-left: 20px;
+            text-align: left;
+            vertical-align: middle;
+            background: #000000;
+        }
+
+            .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+        #headerImage {
+            height: auto;
+        }
+
+        #templateContainer, .bodyContent {
+            background-color: #FFFFFF;
+        }
+
+            .bodyContent div {
+                color: #505050;
+                font-family: Arial;
+                font-size: 14px;
+                line-height: 150%;
+                text-align: center;
+            }
+
+            .bodyContent a, .bodyContent a:visited {
+                font-size: 20px;
+                padding: 15px;
+                text-decoration: none;
+                margin-top: 20px;
+                background: #1fce6d;
+                color: white;
+                border: 3px solid #1fce6d;
+                display: block;
+            }
+
+            .bodyContent img {
+                display: inline;
+                height: auto;
+            }
+
+        #footer {
+            font-size: 14px;
+            color: #505050;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+    &lt;center&gt;
+        &lt;table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable"&gt;
+            &lt;tr&gt;
+                &lt;td align="center" valign="top"&gt;
+
+                    &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer"&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td class="headerContent" height="115"&gt;
+
+                                            &lt;img src="http://www.stoptheline.com/content/images/logo.png"
+                                                 id="headerImage campaign-icon" alt="STOP THE LINE" /&gt;
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/table&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td valign="top" class="bodyContent"&gt;
+
+
+                                            &lt;table border="0" cellpadding="20" cellspacing="0" width="100%"&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td valign="top" align="center"&gt;
+                                                        &lt;div&gt;
+
+                                                            &lt;p&gt;
+                                                                You've successfully created Stop The Line account for:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p style="font-size:18px;"&gt;
+                                                                @org@
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                To verify your account and to set your user account go to this url:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                &lt;a href="@url@/@org_friendly@/usersetup/init/?initkey=@key@&amp;email=@email@"&gt;
+                                                                    @url@/@org_friendly@/usersetup/init/?initkey=@key@&amp;email=@email@
+                                                                &lt;/a&gt;
+                                                            &lt;/p&gt;
+
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/table&gt;
+
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+
+                                &lt;/table&gt;
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+
+                    &lt;table border="0" cellpadding="20" cellspacing="0" width="600" id="footer"&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;COPYRIGHT &amp;copy; STOP THE LINE @year@&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                    &lt;br /&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+        &lt;/table&gt;
+    &lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+	
+ ]]&gt;
+
+  &lt;/BodyHtml&gt;
+  &lt;BodyText&gt;
+    &lt;![CDATA[
+  You've successfully created Stop The Line account for @org@.
+   To verify your account and to set your user account go to this url:
+   @url@/@org_friendly@/usersetup/init/?initkey=@key@&amp;email=@email@
+]]&gt;
+
+  &lt;/BodyText&gt;
+&lt;/EmailTemplate&gt;</value>
+  </data>
+  <data name="UserInvite" xml:space="preserve">
+    <value>&lt;EmailTemplate&gt;
+  &lt;Subject&gt;Invitation to @org@ by @inviter@&lt;/Subject&gt;
+  &lt;BodyHtml&gt;
+
+    &lt;![CDATA[
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;style type="text/css"&gt;
+        body {
+            width: 100% !important;
+            font-family: Arial;
+            font-size: 10px;
+            -webkit-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #outlook a {
+            padding: 0;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        #backgroundTable {
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+        }
+
+        body, #backgroundTable {
+            background-color: #E7E7E7;
+        }
+
+        #templateContainer {
+            border: 1px solid #DDDDDD;
+            margin-top: 45px;
+        }
+
+
+        #templatePreheader {
+            background-color: #FAFAFA;
+        }
+
+        .preheaderContent div {
+            color: #505050;
+            line-height: 100%;
+            text-align: left;
+        }
+
+            .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+
+        #templateHeader {
+            background-color: #FFFFFF;
+            border-bottom: 0;
+        }
+
+        .headerContent {
+            padding: 0;
+            padding-left: 20px;
+            text-align: left;
+            vertical-align: middle;
+            background: #000000;
+        }
+
+            .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */ {
+                color: #336699;
+                font-weight: normal;
+                text-decoration: underline;
+            }
+
+        #headerImage {
+            height: auto;
+        }
+
+        #templateContainer, .bodyContent {
+            background-color: #FFFFFF;
+        }
+
+            .bodyContent div {
+                color: #505050;
+                font-family: Arial;
+                font-size: 14px;
+                line-height: 150%;
+                text-align: center;
+            }
+
+            .bodyContent a, .bodyContent a:visited {
+                font-size: 20px;
+                padding: 15px;
+                text-decoration: none;
+                margin-top: 20px;
+                background: #1fce6d;
+                color: white;
+                border: 3px solid #1fce6d;
+                display: block;
+            }
+
+            .bodyContent img {
+                display: inline;
+                height: auto;
+            }
+
+        #footer {
+            font-size: 14px;
+            color: #505050;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+    &lt;center&gt;
+        &lt;table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable"&gt;
+            &lt;tr&gt;
+                &lt;td align="center" valign="top"&gt;
+
+                    &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer"&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td class="headerContent" height="115"&gt;
+
+                                            &lt;img src="http://www.stoptheline.com/content/images/logo.png"
+                                                 id="headerImage campaign-icon" alt="STOP THE LINE" /&gt;
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/table&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td align="center" valign="top"&gt;
+
+                                &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td valign="top" class="bodyContent"&gt;
+
+
+                                            &lt;table border="0" cellpadding="20" cellspacing="0" width="100%"&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td valign="top" align="center"&gt;
+                                                        &lt;div&gt;
+
+                                                            &lt;p&gt;
+                                                                Dear @username@,&lt;br /&gt;
+                                                                You've been invited to Stop The Line account:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                &lt;span style="font-size:18px;"&gt;@org@&lt;/span&gt;&lt;br /&gt;
+                                                                by @inviter@.
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                To confirm your registration just go to this url:
+                                                            &lt;/p&gt;
+
+                                                            &lt;p&gt;
+                                                                &lt;a href="@url@/@org_friendly@/usersetup/?inviteKey=@key@"&gt;
+                                                                    @url@/@org_friendly@/usersetup/?inviteKey=@key@
+                                                                &lt;/a&gt;
+                                                            &lt;/p&gt;
+
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/table&gt;
+
+
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+
+                                &lt;/table&gt;
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+
+                    &lt;table border="0" cellpadding="20" cellspacing="0" width="600" id="footer"&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;COPYRIGHT &amp;copy; STOP THE LINE @year@&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                    &lt;br /&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+
+        &lt;/table&gt;
+    &lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+   ]]&gt;
+
+  &lt;/BodyHtml&gt;
+  &lt;BodyText&gt;
+    &lt;![CDATA[
+  Dear @username@, 
+  You've been invited to "@org@" Stop The Line account by @inviter@. 
+  To continue with your registration please copy and paste this link in to your browser: @url@/@org_friendly@/usersetup/?inviteKey=@key@
+]]&gt;
+
+  &lt;/BodyText&gt;
+&lt;/EmailTemplate&gt;</value>
+  </data>
+</root>

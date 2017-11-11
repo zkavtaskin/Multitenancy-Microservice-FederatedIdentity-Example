@@ -1,0 +1,47 @@
+﻿@model Web.Models.TenantSettings.UsersModel
+
+@{
+    ViewBag.Title = "USERS";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="second-column">
+    <h2>
+        <span class="header-users"></span>
+        SETTINGS
+    </h2>
+    <h1>YOUR ORGANISATION SETTINGS</h1>
+    <div class="container">
+
+        <div class="sub">
+            <h3>MEMBERS</h3>
+            @foreach (Web.Models.TenantSettings.UserModel user in Model.Users)
+            {
+                @Html.Partial("User", user);
+            }
+        </div>
+
+        @if (Model.UserInvites.Any())
+        {
+            <div class="sub">
+                <h3>INVITED MEMBERS - PENDING VERIFICATION</h3>
+                @foreach (Web.Models.TenantSettings.UserInviteModel userInvite in Model.UserInvites)
+                {
+                    @Html.Partial("UserInvite", userInvite);
+                }
+            </div>
+        }
+
+        <div class="sub">
+            <h3>TIME ZONE</h3>
+            @Html.Partial("Time", Model.Time)
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tenantsettings")
+}
+
+
+

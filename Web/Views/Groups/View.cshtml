@@ -1,0 +1,85 @@
+﻿@model Web.Models.Group.UsersModel
+
+@{
+    ViewBag.Title = "PRODUCTION LINE - " + Model.Name;
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="many-columns">
+
+    <div class="second-column group-view">
+        <h2>
+            <span class="header-production-lines"></span>
+            PRODUCTION LINES
+        </h2>
+        <h1>@Model.Name</h1>
+        <div class="container">
+            <div class="sub">
+                <h3>TEAM MEMBERS</h3>
+                @foreach (Web.Models.Group.UserModel user in Model.Users)
+                {
+                    @Html.Partial("GroupUser", user)
+                }
+
+                @if (ViewBag.UserIsManager)
+                {
+                    <a href="#" class="add-new" id="addnew">Add new team member</a>
+
+                    @Html.Partial("AddUserToGroup", new Web.Models.Group.UserInviteModel() { GroupId = Model.GroupId })
+                }
+            </div>
+        </div>
+    </div>
+
+@if (Model.MonthStops.Any())
+{
+    <div class="third-column group-view">
+        <h3>ACTIVITY</h3>
+        <div class="container">
+
+
+            @foreach (Web.Models.Group.StopSumModel StopSum in Model.MonthStops)
+            {
+
+                <h4>@StopSum.Date.ToString("MMMM yyyy") - @StopSum.TotalDownTime.ToString(@"dd\.hh\:mm\:ss")</h4>
+                <div class="sub">
+                    @foreach (Web.Models.Group.StopModel stop in StopSum.Stops)
+                    {
+                        <div class="card">
+                            <div class="content full">
+                                <label>
+                                    STOPPED - @stop.OverallDownTime.Value.ToString(@"dd\.hh\:mm\:ss")
+                                </label>
+                                <value>
+                                    <strong>Reason:</strong> @stop.Problem <br />
+                                    <strong>By:</strong> @stop.By
+                                    <strong>WhenMiddleware:</strong> @stop.Date.ToString("HH:mm dddd d")
+                                </value>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            }
+        </div>
+    </div>
+}
+
+</div>
+
+
+
+
+
+@if (ViewBag.UserIsManager)
+{
+    <script type="text/javascript">
+        var urlLineSearchDataSource = "@Url.Action("Search")";
+    </script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/group-view")
+    }
+}
+

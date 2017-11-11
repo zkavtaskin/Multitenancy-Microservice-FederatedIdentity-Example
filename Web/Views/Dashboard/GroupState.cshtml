@@ -1,0 +1,26 @@
+﻿@model Web.Models.GroupModel
+
+
+<div class="front">
+    <div class="status">
+        <span class="@Model.State"></span>
+    </div>
+    <h2>@Model.Name</h2>
+
+
+    @if (Model.State != Web.Models.Group.State.Working)
+    {
+        <div class="stopped">
+            <div class="by">
+                <label>Stopped By:</label>
+                <value>@Model.StoppedBy</value>
+            </div>
+            <div class="duration timer">
+                <label>Time:</label>
+                <value>@Model.DownTime.Value.ToString(@"dd\.hh\:mm\:ss")</value>
+                <input type="hidden" id="stoppedDateTime" value="@Model.StoppedDateTime.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds" />
+            </div>
+
+        </div>
+    }
+</div>
