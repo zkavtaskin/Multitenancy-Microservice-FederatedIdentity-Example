@@ -1,5 +1,7 @@
 # Multitenancy, Microservice and Federated Identity Example
 
+![Alt text](https://leanworkspace.visualstudio.com/_apis/public/build/definitions/3c44af5e-2843-4cf8-8e4f-b13743536cc3/4/badge?api-version=4.1-preview)
+
 **Repository objective:** 
 To supplement blog articles on multitenancy, microservices and federated identity (see below), and to create easy to follow code repository that makes sense (if it still makes no sense then please do let me know). 
 
