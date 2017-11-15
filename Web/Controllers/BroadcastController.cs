@@ -10,17 +10,17 @@ using Web.Models.Broadcast;
 
 namespace Web.Controllers
 {
-    public class BroadcastController : LoggedInUserController
+    public class BroadcastController : LoggedInController
     {
-        IGroupService groupService;
-        IStopService stopService;
+        readonly IStopService stopService;
+        readonly TenantContext tenantContext;
 
         public BroadcastController(IGroupService groupService, IUserService userService, 
             IStopService stopService, TenantContext tenantContext)
-            : base(userService, tenantContext)
+            : base(userService)
         {
-            this.groupService = groupService;
             this.stopService = stopService;
+            this.tenantContext = tenantContext;
         }
 
         public ActionResult Index()
@@ -36,7 +36,7 @@ namespace Web.Controllers
 
         private Model getBroadcastModel()
         {
-            Model model = new Model();
+            Model model = new Model(this.tenantContext.FriendlyName);
             List<StopDto> unresolvedGroups = this.stopService.GetUnresolved();
             model.Groups = Mapper.Map<List<StopDto>, List<GroupModel>>(unresolvedGroups);
 

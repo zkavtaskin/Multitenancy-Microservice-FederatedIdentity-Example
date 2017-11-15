@@ -12,17 +12,19 @@ using Web.Models.TenantSettings;
 namespace Web.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class TenantSettingsController : LoggedInUserController
+    public class TenantSettingsController : LoggedInController
     {
         IStopService stopService;
         ITenantService tenantService;
+        TenantContext tenantContext;
 
         public TenantSettingsController(IUserService userService, 
             IStopService stopService, ITenantService tenantService, TenantContext tenantContext)
-            : base(userService, tenantContext)
+            : base(userService)
         {
             this.stopService = stopService;
             this.tenantService = tenantService;
+            this.tenantContext = tenantContext;
         }
 
         [HttpGet]

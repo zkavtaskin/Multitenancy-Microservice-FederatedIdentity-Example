@@ -15,17 +15,19 @@ using Web.Models.Dashboard;
 namespace Web.Controllers
 {
     [Authorize]
-    public class DashboardController : LoggedInUserController
+    public class DashboardController : LoggedInController
     {
-        IGroupService groupService;
-        IStopService stopService;
+        readonly IGroupService groupService;
+        readonly IStopService stopService;
+        readonly TenantContext tenantContext;
 
         public DashboardController(IGroupService groupService, IUserService userService, 
             IStopService stopService, TenantContext tenantContext)
-            : base(userService, tenantContext)
+            : base(userService)
         {
             this.groupService = groupService;
             this.stopService = stopService;
+            this.tenantContext = tenantContext;
         }
 
         public ActionResult Index()
@@ -98,7 +100,7 @@ namespace Web.Controllers
             {
                 List<GroupUserDto> users = this.groupService.GetUsers(currentUserStoppedGroup.GroupId);
 
-                modelGroupStopped = new UserStoppedModel();
+                modelGroupStopped = new UserStoppedModel(this.tenantContext.FriendlyName);
                 modelGroupStopped.Group = Mapper.Map<StopDto, GroupModel>(currentUserStoppedGroup);
                 modelGroupStopped.Users = Mapper.Map<List<GroupUserDto>, List<Web.Models.Group.UserModel>>(users);
             }
@@ -140,7 +142,7 @@ namespace Web.Controllers
                 groupsState.Add(groupState);
             }
 
-            GroupsStateModel modelGroups = new GroupsStateModel();
+            GroupsStateModel modelGroups = new GroupsStateModel(this.tenantContext.FriendlyName);
             modelGroups.Groups = groupsState;
             return modelGroups;
         }

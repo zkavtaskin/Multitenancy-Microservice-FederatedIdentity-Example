@@ -9,12 +9,12 @@ using Web.Models;
 namespace Web.Controllers
 {
     [Authorize]
-    public class UserSettingsController : LoggedInUserController
+    public class SettingsController : LoggedInController
     {
-        public UserSettingsController(IUserService userService, TenantContext tenantContext)
-            : base(userService, tenantContext)
+        public SettingsController(IUserService userService, TenantContext tenantContext)
+            : base(userService)
         {
-            this.userService = userService;
+
         }
 
         [HttpGet]
@@ -49,8 +49,8 @@ namespace Web.Controllers
                 {
                     List<UserDto> users = this.userService.GetUsers();
                     List<UserInviteDto> userInvites = this.userService.GetUserInvites();
-                    if(users.Where(x => x.Email == model.Email).Count() != 0 
-                        || userInvites.Where(x => x.Email == model.Email).Count() != 0)
+                    if(users.Count(x => x.Email == model.Email) != 0 
+                        || userInvites.Count(x => x.Email == model.Email) != 0)
                     {
                         model.EmailIsAlreadyUsed = true;
                         return View(model);

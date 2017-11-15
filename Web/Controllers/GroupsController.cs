@@ -15,20 +15,21 @@ using Web.Models.Group;
 namespace Web.Controllers
 {
     [Authorize]
-    public class GroupsController : LoggedInUserController
+    public class GroupsController : LoggedInController
     {
         IGroupService groupService;
         IStopService stopService;
         ITenantService tenantService;
+        TenantContext tenantContext;
 
         public GroupsController(IGroupService groupService, IUserService userService, 
             IStopService stopService, ITenantService tenantService, TenantContext tenantContext)
-            : base(userService, tenantContext)
+            : base(userService)
         {
             this.groupService = groupService;
-            this.userService = userService;
             this.stopService = stopService;
             this.tenantService = tenantService;
+            this.tenantContext = tenantContext;
         }
 
         [HttpGet]
@@ -132,7 +133,7 @@ namespace Web.Controllers
             this.groupService.Remove(model.Id);
 
             Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<GroupHub>()
-                .Clients.All.groupLifeCycleStateChange(this.ViewBag.TenantFriendlyName, LifeCycleState.Removed.ToString());
+                .Clients.All.groupLifeCycleStateChange(this.tenantContext.FriendlyName, LifeCycleState.Removed.ToString());
 
             return RedirectToAction("Index");
         }
@@ -219,7 +220,7 @@ namespace Web.Controllers
                 }
 
                 Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<GroupHub>()
-                    .Clients.All.groupLifeCycleStateChange(this.ViewBag.TenantFriendlyName, LifeCycleState.Added.ToString());
+                    .Clients.All.groupLifeCycleStateChange(this.tenantContext.FriendlyName, LifeCycleState.Added.ToString());
 
                 return RedirectToAction("View", new { groupId = group.Id });
             }

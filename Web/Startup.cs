@@ -20,6 +20,7 @@ using Web.Middleware;
 using Microsoft.Owin.Security.Cookies;
 using System.Web.Helpers;
 using System.IdentityModel.Claims;
+using Server.Service.Users;
 
 
 [assembly: OwinStartup(typeof(Web.Startup))]
@@ -70,23 +71,26 @@ namespace Web
                     appBranch.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
                     appBranch.UseCookieAuthentication(new CookieAuthenticationOptions
+                        {
+                            CookieName = $"OAuthCookie.{tenantContext.FriendlyName}"
+                        })
+                        .UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions()
+                        {
+                            ClientId = tenantContext.AuthClientId,
+                            Authority = tenantContext.AuthAuthority,
+                            RedirectUri = $"http://localhost:2295/{tenantContext.FriendlyName}/",
+                            Notifications = new OpenIdConnectAuthenticationNotifications()
                             {
-                                CookieName = $"OAuthCookie.{tenantContext.FriendlyName}"
-                            })
-                            .UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions()
-                            { 
-                                ClientId = tenantContext.AuthClientId,
-                                Authority = tenantContext.AuthAuthority,
-                                RedirectUri = $"http://localhost:2295/{tenantContext.FriendlyName}/",
-                                Notifications = new OpenIdConnectAuthenticationNotifications()
+                                AuthenticationFailed = context =>
                                 {
-                                    AuthenticationFailed = context =>
-                                    {
-                                        context.HandleResponse();
-                                        throw context.Exception;
-                                    }
+                                    context.HandleResponse();
+                                    throw context.Exception;
                                 }
-                            });
+                            }
+                        })
+                        .Use<AuthenticationChallangeMiddleware>(tenantContext)
+                        .Use<AuthenticationAudienceCheckMiddleware>(tenantContext)
+                        .Use<AuthenticationClaimsMiddleware>();
                 });
 
             MappingConfig.RegisterMapping();
