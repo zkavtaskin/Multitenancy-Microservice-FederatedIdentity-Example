@@ -39,42 +39,33 @@ namespace Web
             BootstrapConfig.Register(container, logger);
 
             app.MapSignalR()
-               .UseMultitenancy(
-                    new WhenMiddleware((context) => {
-                        HttpContextBase httpContext = (HttpContextBase)context.Environment["System.Web.HttpContextBase"];
-                        RouteData routeData = RouteTable.Routes.GetRouteData(httpContext);
-                        return Task.FromResult(routeData != null && routeData.DataTokens.ContainsValue("multi"));
-                    }),
-                    new MultitenancyNotifications {
-                        TenantNameCouldNotBeFound = context =>
-                        {
-                            throw new HttpException(400, "Tenant name must be provided");
-                        },
-                        TenantCouldNotBeResolved = context =>
-                        {
-                            context.Response.Redirect("/signup/tenant/");
-                            return Task.FromResult(0);
-                        },
-                        TenantResolved = (context, tenantContextFactory, tenantDto) =>
-                        {
-                            tenantContextFactory.Create(
-                                tenantDto.Id,
-                                tenantDto.NameFriendly,
-                                tenantDto.AuthClientId,
-                                tenantDto.AuthAuthority
-                            );
-                            return Task.FromResult(0);
-                        }
+                .UseMultitenancy(new MultitenancyNotifications
+                { 
+                    TenantNameCouldNotBeFound = context => throw new HttpException(400, "Tenant name must be provided"),
+                    TenantDataCouldNotBeResolved = context =>
+                    {
+                        context.Response.Redirect("/signup/tenant/");
+                        return Task.FromResult(0);
+                    },
+                    TenantDataResolved = (context, tenantContextFactory, tenantDto) =>
+                    {
+                        tenantContextFactory.Create(
+                            tenantDto.Id,
+                            tenantDto.NameFriendly,
+                            tenantDto.AuthClientId,
+                            tenantDto.AuthAuthority
+                        );
+                        return Task.FromResult(0);
                     }
-                )
-                .UsePerTenant((tenantContext, appBranch) => {
+                }).UsePerTenant((tenantContext, appBranch) =>
+                {
                     appBranch.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
                     appBranch.UseCookieAuthentication(new CookieAuthenticationOptions
                         {
                             CookieName = $"OAuthCookie.{tenantContext.FriendlyName}"
                         })
-                        .UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions()
+                        .UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
                         {
                             ClientId = tenantContext.AuthClientId,
                             Authority = tenantContext.AuthAuthority,

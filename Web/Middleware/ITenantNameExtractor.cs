@@ -1,9 +1,8 @@
-﻿using Microsoft.Owin;
-
-namespace Web.Middleware
+﻿namespace Web.Middleware
 {
     public interface ITenantNameExtractor
     {
-        string GetName(IOwinContext context);
+        bool CanExtract();
+        string GetName();
     }
 }

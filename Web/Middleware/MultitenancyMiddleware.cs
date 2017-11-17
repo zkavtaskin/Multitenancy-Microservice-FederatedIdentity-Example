@@ -24,7 +24,7 @@ namespace Web.Middleware
 
         public async Task Invoke(IOwinContext context, Func<Task> next)
         {
-            string name = this.tenantNameExtractor.GetName(context);
+            string name = this.tenantNameExtractor.GetName();
 
             if (string.IsNullOrEmpty(name))
             {
@@ -35,11 +35,11 @@ namespace Web.Middleware
                 TenantDto tenant = this.tenantResolver.GetTenant(name);
                 if (tenant == null)
                 {
-                    await this.notifications.TenantCouldNotBeResolved(context);
+                    await this.notifications.TenantDataCouldNotBeResolved(context);
                 }
                 else
                 {
-                    await this.notifications.TenantResolved(context, this.tenantContextFactory, tenant);
+                    await this.notifications.TenantDataResolved(context, this.tenantContextFactory, tenant);
                     await next();
                 }
             }

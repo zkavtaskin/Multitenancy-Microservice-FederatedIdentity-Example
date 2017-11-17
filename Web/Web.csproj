@@ -25,6 +25,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -204,11 +205,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BroadcastController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\LoggedInUserController.cs" />
+    <Compile Include="Controllers\LoggedInController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\UserSettingsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="Controllers\TenantSettingsController.cs" />
     <Compile Include="Controllers\UserSetupController.cs" />
@@ -230,8 +231,6 @@
     <Compile Include="Middleware\CacheTenantResolver.cs" />
     <Compile Include="Middleware\TenantPipelineMiddleware.cs" />
     <Compile Include="Middleware\TenantResolver.cs" />
-    <Compile Include="Middleware\PlaceHolderMiddleware.cs" />
-    <Compile Include="Middleware\WhenMiddleware.cs" />
     <Compile Include="Models\Broadcast\GroupStopModel.cs" />
     <Compile Include="Models\Dashboard\GroupsStateModel.cs" />
     <Compile Include="Models\Broadcast\Model.cs" />
@@ -361,7 +360,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
-    <Content Include="Views\UserSettings\Index.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
     <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\View.cshtml" />

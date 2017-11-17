@@ -13,22 +13,22 @@ namespace Web
             routes.IgnoreRoute("signalr/{*pathInfo}");
 
             routes.MapRoute(
-                name: "defaultTenantSignUp",
-                url: "signup/tenant/{action}/{id}",
-                defaults: new { controller = "tenant", action = "Index" , id = UrlParameter.Optional }
-            ).DataTokens.Add("name", "defaultTenantSignUp");
+                "defaultTenantSignUp",
+                "signup/tenant/{action}/{id}",
+                new {controller = "tenant", action = "Index", id = UrlParameter.Optional}
+            );
 
             routes.MapRoute(
-                name: "error",
-                url: "error",
-                defaults: new { controller = "error", action = "error", id = UrlParameter.Optional }
-            ).DataTokens.Add("name", "error");
+                "error",
+                "error",
+                new {controller = "error", action = "error", id = UrlParameter.Optional}
+            );
 
             routes.MapRoute(
-                name: "multi",
-                url: "{tenant}/{controller}/{action}/{id}",
-                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
-            ).DataTokens.Add("name", "multi");
+                "multi",
+                "{tenant}/{controller}/{action}/{id}",
+                new {controller = "Dashboard", action = "Index", id = UrlParameter.Optional}
+            ).DataTokens.Add("name", "webclient_multitenancy");
 
         }
     }

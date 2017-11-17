@@ -11,7 +11,7 @@ namespace Web.Controllers
         protected readonly IUserService userService;
         protected UserDto user;
 
-        public LoggedInController(IUserService userService)
+        protected LoggedInController(IUserService userService)
         {
             this.userService = userService;
         }

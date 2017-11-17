@@ -5,20 +5,29 @@ using Owin;
 using Server.Core.Container;
 using Server.Service;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Routing;
 
 namespace Web.Middleware
 {
     public static class AppBuilderExtensions
     {
-        public static IAppBuilder UseMultitenancy(this IAppBuilder app, WhenMiddleware whenMiddleware, MultitenancyNotifications notifications)
+
+        public static IAppBuilder UseMultitenancy(this IAppBuilder app, MultitenancyNotifications notifications)
         {
-            Func<IOwinContext, Func<Task>, Task> conditionalNext = (context, next) =>
-                ServiceLocator.Resolve<MultitenancyMiddleware>(new {notifications = notifications})
-                    .Invoke(context, next);
+            return app.Use((context, next) =>
+            {
+                ITenantNameExtractor tenantNameExtractor = ServiceLocator.Resolve<ITenantNameExtractor>(new { context });
 
-            app.Use((context, next) => whenMiddleware.Invoke(context,  conditionalNext, next));
+                if (tenantNameExtractor.CanExtract())
+                {
+                    MultitenancyMiddleware multitenancyMiddleware = ServiceLocator.Resolve<MultitenancyMiddleware>(new { notifications });
+                    return multitenancyMiddleware.Invoke(context, next);
+                }
 
-            return app;
+                return next();
+            });
         }
 
         public static IAppBuilder UsePerTenant(this IAppBuilder app, Action<TenantContext, IAppBuilder> newBranchAppConfig)

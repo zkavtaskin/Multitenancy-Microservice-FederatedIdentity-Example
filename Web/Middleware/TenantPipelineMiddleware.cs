@@ -14,13 +14,8 @@ namespace Web.Middleware
     /// </summary>
     public class TenantPipelineMiddleware
     {
-        private readonly static ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>> branches
+        private static readonly ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>> branches
             = new ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>>();
-
-        public TenantPipelineMiddleware()
-        {
-
-        }
 
         public async Task Invoke(IDictionary<string, object> env, Func<IDictionary<string, object>, Task> next, IAppBuilder rootApp, TenantContext tenantContext, Action<TenantContext, IAppBuilder> newBranchAppConfig)
         {
