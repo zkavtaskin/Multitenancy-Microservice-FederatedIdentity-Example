@@ -4,6 +4,10 @@ using Owin;
 using Server.Core.Container;
 using Server.Service;
 using System.Collections.Generic;
+using System.Threading;
+using System.Web.Mvc;
+using log4net;
+using Microsoft.Owin.BuilderProperties;
 
 namespace Web.Middleware
 {
@@ -35,6 +39,17 @@ namespace Web.Middleware
                 }))
             );
 
+            return app;
+        }
+
+        public static IAppBuilder OnDispose(this IAppBuilder app, Action doOnDispose)
+        {
+            AppProperties properties = new AppProperties(app.Properties);
+            CancellationToken token = properties.OnAppDisposing;
+            if (token != CancellationToken.None)
+            {
+                token.Register(doOnDispose);
+            }
             return app;
         }
     }

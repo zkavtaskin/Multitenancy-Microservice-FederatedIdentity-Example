@@ -10,8 +10,6 @@ using Castle.Windsor;
 using log4net;
 using Server.Service;
 using Web.App_Start;
-using Microsoft.Owin.BuilderProperties;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Owin.Security;
@@ -20,11 +18,8 @@ using Web.Middleware;
 using Microsoft.Owin.Security.Cookies;
 using System.Web.Helpers;
 using System.IdentityModel.Claims;
-using Server.Service.Users;
-
 
 [assembly: OwinStartup(typeof(Web.Startup))]
-
 namespace Web
 {
     public class Startup
@@ -34,82 +29,82 @@ namespace Web
             log4net.Config.XmlConfigurator.Configure();
             ILog logger = LogManager.GetLogger("Logger");
 
+            logger.Info("Application Started");
+            logger.Info("Configuring DI container");
             IWindsorContainer container = new WindsorContainer();
             ServiceLocator.Set(container); 
             BootstrapConfig.Register(container, logger);
 
-            app.MapSignalR()
-                .UseMultitenancy(new MultitenancyNotifications
-                { 
-                    TenantNameCouldNotBeFound = context =>
-                    {
-                        throw new HttpException(400, "Tenant name must be provided");
-                    },
-                    TenantDataCouldNotBeResolved = context =>
-                    {
-                        context.Response.Redirect("/signup/tenant/");
-                        return Task.FromResult(0);
-                    },
-                    TenantDataResolved = (context, tenantContextFactory, tenantDto) =>
-                    {
-                        tenantContextFactory.Create(
-                            tenantDto.Id,
-                            tenantDto.NameFriendly,
-                            tenantDto.AuthClientId,
-                            tenantDto.AuthAuthority
-                        );
-                        return Task.FromResult(0);
-                    }
-                }).UsePerTenant((tenantContext, appBranch) =>
+            logger.Info("Configuring HTTP Middleware");
+            app.MapSignalR();
+            app.UseMultitenancy(new MultitenancyNotifications
+            {
+                TenantNameCouldNotBeFound = context =>
                 {
-                    appBranch.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
+                    throw new HttpException(400, "Tenant name must be provided");
+                },
+                TenantDataCouldNotBeResolved = context =>
+                {
+                    context.Response.Redirect("/signup/tenant/");
+                    return Task.FromResult(0);
+                },
+                TenantDataResolved = (context, tenantContextFactory, tenantDto) =>
+                {
+                    tenantContextFactory.Create(
+                        tenantDto.Id,
+                        tenantDto.NameFriendly,
+                        tenantDto.AuthClientId,
+                        tenantDto.AuthAuthority
+                    );
+                    return Task.FromResult(0);
+                }
+            });
+            app.UsePerTenant((tenantContext, appBranch) =>
+            {
+                appBranch.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
-                    appBranch.UseCookieAuthentication(new CookieAuthenticationOptions
-                        {
-                            CookieName = $"OAuthCookie.{tenantContext.FriendlyName}"
-                        })
-                        .UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
-                        {
-                            ClientId = tenantContext.AuthClientId,
-                            Authority = tenantContext.AuthAuthority,
-                            RedirectUri = $"http://localhost:2295/{tenantContext.FriendlyName}/",
-                            Notifications = new OpenIdConnectAuthenticationNotifications()
-                            {
-                                AuthenticationFailed = context =>
-                                {
-                                    context.HandleResponse();
-                                    throw context.Exception;
-                                }
-                            }
-                        })
-                        .Use<AuthenticationChallangeMiddleware>(tenantContext)
-                        .Use<AuthenticationAudienceCheckMiddleware>(tenantContext)
-                        .Use<AuthenticationClaimsAppenderMiddleware>();
+                appBranch.UseCookieAuthentication(new CookieAuthenticationOptions
+                { 
+                    CookieName = $"OAuthCookie.{tenantContext.FriendlyName}"
                 });
 
-            MappingConfig.RegisterMapping();
-            Mapper.AddProfile(new Web.Models.Map());
+                appBranch.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
+                {
+                    ClientId = tenantContext.AuthClientId,
+                    Authority = tenantContext.AuthAuthority,
+                    RedirectUri = $"http://localhost:2295/{tenantContext.FriendlyName}/",
+                    Notifications = new OpenIdConnectAuthenticationNotifications()
+                    {
+                        AuthenticationFailed = context =>
+                        {
+                            context.HandleResponse();
+                            throw context.Exception;
+                        }
+                    }
+                });
 
+                appBranch.Use<AuthenticationChallangeMiddleware>(tenantContext);
+                appBranch.Use<AuthenticationAudienceCheckMiddleware>(tenantContext);
+                appBranch.Use<AuthenticationClaimsAppenderMiddleware>();
+            });
+
+            logger.Info("Configuring MVC Pipeline");
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
 
-            logger.Info("Application Started");
+            logger.Info("Configuring Domain, DTO and Model Mapping");
+            MappingConfig.RegisterMapping();
+            Mapper.AddProfile(new Web.Models.Map());
 
-            AppProperties properties = new AppProperties(app.Properties);
-            CancellationToken token = properties.OnAppDisposing;
-            if (token != CancellationToken.None)
+            app.OnDispose(() =>
             {
-                token.Register(() =>
-                {
-                    ServiceLocator.Resolve<ILog>().Info("Application Ended");
-                    ServiceLocator.Release();
-                });
-            }
+                ServiceLocator.Resolve<ILog>().Info("Application Ended");
+                ServiceLocator.Release();
+            });
         }
 
     }
