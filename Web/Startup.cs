@@ -41,7 +41,10 @@ namespace Web
             app.MapSignalR()
                 .UseMultitenancy(new MultitenancyNotifications
                 { 
-                    TenantNameCouldNotBeFound = context => throw new HttpException(400, "Tenant name must be provided"),
+                    TenantNameCouldNotBeFound = context =>
+                    {
+                        throw new HttpException(400, "Tenant name must be provided");
+                    },
                     TenantDataCouldNotBeResolved = context =>
                     {
                         context.Response.Redirect("/signup/tenant/");
@@ -81,7 +84,7 @@ namespace Web
                         })
                         .Use<AuthenticationChallangeMiddleware>(tenantContext)
                         .Use<AuthenticationAudienceCheckMiddleware>(tenantContext)
-                        .Use<AuthenticationClaimsMiddleware>();
+                        .Use<AuthenticationClaimsAppenderMiddleware>();
                 });
 
             MappingConfig.RegisterMapping();

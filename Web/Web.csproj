@@ -221,7 +221,7 @@
     <Compile Include="Hubs\GroupHub.cs" />
     <Compile Include="Middleware\AppBuilderExtensions.cs" />
     <Compile Include="Middleware\AuthenticationAudienceCheckMiddleware.cs" />
-    <Compile Include="Middleware\AuthenticationClaimsMiddleware.cs" />
+    <Compile Include="Middleware\AuthenticationClaimsAppenderMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationChallangeMiddleware.cs" />
     <Compile Include="Middleware\ITenantNameExtractor.cs" />
     <Compile Include="Middleware\ITenantResolver.cs" />

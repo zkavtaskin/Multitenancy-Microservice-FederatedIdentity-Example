@@ -6,9 +6,9 @@ using Server.Service.Users;
 
 namespace Web.Middleware
 {
-    public class AuthenticationClaimsMiddleware : OwinMiddleware
+    public class AuthenticationClaimsAppenderMiddleware : OwinMiddleware
     {
-        public AuthenticationClaimsMiddleware(OwinMiddleware next)
+        public AuthenticationClaimsAppenderMiddleware(OwinMiddleware next)
             : base(next)
         {
 
