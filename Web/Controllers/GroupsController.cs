@@ -17,20 +17,21 @@ using Web.Models.Group;
 namespace Web.Controllers
 {
     [Authorize]
-    public class GroupsController : LoggedInController
+    public class GroupsController : Controller
     {
         IGroupService groupService;
         IStopService stopService;
         ITenantService tenantService;
+        IUserService userService;
         TenantContext tenantContext;
 
         public GroupsController(IGroupService groupService, IUserService userService, 
             IStopService stopService, ITenantService tenantService, TenantContext tenantContext)
-            : base(userService)
         {
             this.groupService = groupService;
             this.stopService = stopService;
             this.tenantService = tenantService;
+            this.userService = userService;
             this.tenantContext = tenantContext;
         }
 
@@ -54,7 +55,7 @@ namespace Web.Controllers
                 Model groupModel = Mapper.Map<GroupDto, Model>(group);
                 if(stopHash.ContainsKey(group.Id))
                 {
-                    groupModel.State = Web.Models.Group.State.Stopped;
+                    groupModel.State = State.Stopped;
                 }
                 groupModels.Add(groupModel);
             }

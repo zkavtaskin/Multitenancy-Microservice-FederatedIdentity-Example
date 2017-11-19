@@ -2,7 +2,6 @@
 using Server.Core.Time;
 using Server.Service.Groups;
 using Server.Service.Stops;
-using Server.Service.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +16,14 @@ using Web.Models.Dashboard;
 namespace Web.Controllers
 {
     [Authorize]
-    public class DashboardController : LoggedInController
+    public class DashboardController : Controller
     {
         readonly IGroupService groupService;
         readonly IStopService stopService;
         readonly TenantContext tenantContext;
 
-        public DashboardController(IGroupService groupService, IUserService userService, 
+        public DashboardController(IGroupService groupService,
             IStopService stopService, TenantContext tenantContext)
-            : base(userService)
         {
             this.groupService = groupService;
             this.stopService = stopService;

@@ -11,12 +11,13 @@ using Web.Models;
 namespace Web.Controllers
 {
     [Authorize]
-    public class SettingsController : LoggedInController
+    public class SettingsController : Controller
     {
-        public SettingsController(IUserService userService, TenantContext tenantContext)
-            : base(userService)
-        {
+        IUserService userService;
 
+        public SettingsController(IUserService userService, TenantContext tenantContext)
+        {
+            this.userService = userService;
         }
 
         [HttpGet]

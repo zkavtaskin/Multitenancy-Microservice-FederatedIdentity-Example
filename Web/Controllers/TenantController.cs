@@ -1,6 +1,4 @@
-﻿using Server.Core.ConfigManager;
-using Server.Service.Tenants;
-using Server.Service.Users;
+﻿using Server.Service.Tenants;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,15 +10,10 @@ namespace Web.Controllers
     public class TenantController : Controller
     {
         ITenantService tenantService;
-        IUserService userService;
-        IConfigurationProvider configurationProvider;
 
-        public TenantController(ITenantService tenantService, 
-            IUserService userService, IConfigurationProvider configurationProvider)
+        public TenantController(ITenantService tenantService)
         {
             this.tenantService = tenantService;
-            this.userService = userService;
-            this.configurationProvider = configurationProvider;
         }
 
         [HttpGet]

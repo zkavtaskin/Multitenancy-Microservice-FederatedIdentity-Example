@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Security.Claims
+@using Web.Middleware
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts {
@@ -34,10 +36,10 @@
         </div>
         <div class="bottom">
             <div id="identity" class="identity">
-                <span class="circle @ViewBag.UserInitials.ToLower()[0]">@ViewBag.UserInitials</span>
+                <span class="circle @(((ClaimsPrincipal)this.User).AppUserInitials().ToLower()[0])">@(((ClaimsPrincipal)this.User).AppUserInitials())</span>
                 <div>
-                    <label>@ViewBag.UserFullName </label>
-                    <img id="cog" src="~/Content/themes/base/images/cog.png" title="Settings" />
+                    <label>@(((ClaimsPrincipal)this.User).AppUserFullName())</label>
+                    <img id="cog" src="~/Content/themes/base/images/cog.png" title="Settings"/>
                 </div>
             </div>
             <div id="settings" class="actions">

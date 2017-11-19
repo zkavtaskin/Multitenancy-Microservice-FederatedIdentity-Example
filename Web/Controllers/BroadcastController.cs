@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Server.Service.Groups;
 using Server.Service.Stops;
-using Server.Service.Users;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Server.Service;
@@ -10,14 +9,14 @@ using Web.Models.Broadcast;
 
 namespace Web.Controllers
 {
-    public class BroadcastController : LoggedInController
+    [Authorize]
+    public class BroadcastController : Controller
     {
         readonly IStopService stopService;
         readonly TenantContext tenantContext;
 
-        public BroadcastController(IGroupService groupService, IUserService userService, 
+        public BroadcastController(IGroupService groupService, 
             IStopService stopService, TenantContext tenantContext)
-            : base(userService)
         {
             this.stopService = stopService;
             this.tenantContext = tenantContext;

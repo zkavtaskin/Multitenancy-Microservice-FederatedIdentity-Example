@@ -12,18 +12,19 @@ using Web.Models.TenantSettings;
 namespace Web.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class TenantSettingsController : LoggedInController
+    public class TenantSettingsController : Controller
     {
         IStopService stopService;
         ITenantService tenantService;
+        IUserService userService;
         TenantContext tenantContext;
 
         public TenantSettingsController(IUserService userService, 
             IStopService stopService, ITenantService tenantService, TenantContext tenantContext)
-            : base(userService)
         {
             this.stopService = stopService;
             this.tenantService = tenantService;
+            this.userService = userService;
             this.tenantContext = tenantContext;
         }
 

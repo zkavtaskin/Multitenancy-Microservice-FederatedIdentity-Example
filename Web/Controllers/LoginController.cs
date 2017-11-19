@@ -8,11 +8,9 @@ namespace Web.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        IUserService userService;
-
-        public LoginController(IUserService userService)
+        public LoginController()
         {
-            this.userService = userService;
+
         }
         
         [HttpGet]

@@ -18,7 +18,7 @@
 
         <div class="edit">
             <div class="actions">
-                @if(Model.Id != Guid.Parse(((ClaimsIdentity)this.User.Identity).FindFirst(ClaimTypesExtension.AppUserId).Value) && Model.CanRemove)
+                @if(Model.Id != ((ClaimsPrincipal)this.User).AppUserId() && Model.CanRemove)
                 {
                     using (Html.BeginForm("RemoveUser", "TenantSettings"))
                     {
@@ -38,7 +38,7 @@
                     }
                 }
                 
-                @if (Model.IsAdmin && Model.Id == Guid.Parse(((ClaimsIdentity)this.User.Identity).FindFirst(ClaimTypesExtension.AppUserId).Value))
+                @if (Model.IsAdmin && Model.Id == ((ClaimsPrincipal)this.User).AppUserId())
                 {
                     using (Html.BeginForm("RemoveAdmin", "TenantSettings"))
                     {
