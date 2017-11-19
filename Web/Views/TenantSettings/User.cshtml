@@ -1,4 +1,6 @@
-﻿@model Web.Models.TenantSettings.UserModel
+﻿@using System.Security.Claims
+@using Web.Middleware
+@model Web.Models.TenantSettings.UserModel
 
 <div class="card">
     <span class="circle @Model.Initials.ToLower()[0]">
@@ -16,8 +18,7 @@
 
         <div class="edit">
             <div class="actions">
-
-                @if(Model.Id != ViewBag.UserId && Model.CanRemove)
+                @if(Model.Id != Guid.Parse(((ClaimsIdentity)this.User.Identity).FindFirst(ClaimTypesExtension.AppUserId).Value) && Model.CanRemove)
                 {
                     using (Html.BeginForm("RemoveUser", "TenantSettings"))
                     {
@@ -27,7 +28,7 @@
                     }
                 }
 
-                @if(!Model.IsManager)
+                @if(!Model.IsAdmin)
                 {
                     using (Html.BeginForm("AddAdmin", "TenantSettings"))
                     {
@@ -37,7 +38,7 @@
                     }
                 }
                 
-                @if (Model.IsManager && Model.Id == ViewBag.UserId)
+                @if (Model.IsAdmin && Model.Id == Guid.Parse(((ClaimsIdentity)this.User.Identity).FindFirst(ClaimTypesExtension.AppUserId).Value))
                 {
                     using (Html.BeginForm("RemoveAdmin", "TenantSettings"))
                     {

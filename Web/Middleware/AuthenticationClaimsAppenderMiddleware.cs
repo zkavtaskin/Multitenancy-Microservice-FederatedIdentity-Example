@@ -21,10 +21,11 @@ namespace Web.Middleware
 
             string idpID = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
             UserDto userDto = userService.GetUserByIdpID(idpID);
+            ClaimsIdentity claimsIdentity = claimsPrincipal.Identity as ClaimsIdentity;
+            claimsIdentity.AddClaim(new Claim(ClaimTypesExtension.AppUserId, userDto.Id.ToString()));
 
             if (userDto.IsAdmin)
             {
-                ClaimsIdentity claimsIdentity = claimsPrincipal.Identity as ClaimsIdentity;
                 claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
             }
 

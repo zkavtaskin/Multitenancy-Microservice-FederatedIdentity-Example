@@ -223,6 +223,7 @@
     <Compile Include="Middleware\AuthenticationAudienceCheckMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationClaimsAppenderMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationChallangeMiddleware.cs" />
+    <Compile Include="Middleware\ClaimTypesExtension.cs" />
     <Compile Include="Middleware\ITenantNameExtractor.cs" />
     <Compile Include="Middleware\ITenantResolver.cs" />
     <Compile Include="Middleware\MultitenancyNotifications.cs" />

@@ -10,7 +10,7 @@ namespace Web.Models.TenantSettings
 
         public string Initials { get; set; }
 
-        public bool IsManager { get; set; }
+        public bool IsAdmin { get; set; }
 
         public bool CanRemove { get; set; }
     }

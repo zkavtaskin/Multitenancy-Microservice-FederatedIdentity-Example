@@ -21,7 +21,6 @@ namespace Web.Controllers
             string id = ((ClaimsPrincipal)this.User).FindFirst(ClaimTypes.NameIdentifier).Value;
             this.user = this.userService.GetUserByIdpID(id);
 
-            this.ViewBag.UserId = user.Id;
             this.ViewBag.UserFullName = user.FullName;
             this.ViewBag.UserInitials = user.Initials;
 
