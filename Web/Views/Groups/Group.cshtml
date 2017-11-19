@@ -17,7 +17,7 @@
             <value>
                 @Model.NumberOfMembers Users, Created on @Model.DateCreated.ToString("dd/MM/yyyy")
             </value>
-            @if(ViewBag.UserIsManager)
+            @if (User.IsInRole("Admin"))
             { 
                 <div class="edit">
                     <div class="actions">

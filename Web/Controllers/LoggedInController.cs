@@ -24,7 +24,6 @@ namespace Web.Controllers
             this.ViewBag.UserId = user.Id;
             this.ViewBag.UserFullName = user.FullName;
             this.ViewBag.UserInitials = user.Initials;
-            this.ViewBag.UserIsManager = user.IsAdmin;
 
             base.EndExecute(asyncResult);
         }

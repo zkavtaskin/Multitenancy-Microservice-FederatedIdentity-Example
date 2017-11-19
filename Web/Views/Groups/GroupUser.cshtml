@@ -31,7 +31,7 @@
                 </value>
             }
 
-            @if (ViewBag.UserIsManager)
+            @if (User.IsInRole("Admin"))
             { 
                 <div class="edit">
                     <div class="actions">

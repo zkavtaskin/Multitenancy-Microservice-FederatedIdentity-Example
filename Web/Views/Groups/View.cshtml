@@ -21,7 +21,7 @@
                     @Html.Partial("GroupUser", user)
                 }
 
-                @if (ViewBag.UserIsManager)
+                @if (User.IsInRole("Admin"))
                 {
                     <a href="#" class="add-new" id="addnew">Add new team member</a>
 
@@ -71,7 +71,7 @@
 
 
 
-@if (ViewBag.UserIsManager)
+@if (User.IsInRole("Admin"))
 {
     <script type="text/javascript">
         var urlLineSearchDataSource = "@Url.Action("Search")";

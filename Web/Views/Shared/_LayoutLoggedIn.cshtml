@@ -24,8 +24,8 @@
                     <li class="menu-dashboard">@Html.ActionLink("DASHBOARD", "Index", "Dashboard")</li>
                     <li class="menu-production-lines">@Html.ActionLink("PRODUCTION LINES", "Index", "Groups")</li>
 
-                    @if(ViewBag.UserIsManager)
-                    { 
+                    @if (User.IsInRole("Admin"))
+                    {
                         <li class="menu-create-production-lines">@Html.ActionLink("CREATE PRODUCTION LINE", "Create", "Groups")</li>
                         <li class="menu-users">@Html.ActionLink("SETTINGS", "Index", "TenantSettings")</li>
                     }

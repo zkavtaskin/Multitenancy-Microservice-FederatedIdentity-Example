@@ -16,7 +16,7 @@
             @Html.Partial("Group", group)
         }
 
-        @if (ViewBag.UserIsManager)
+        @if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("Add new production line", "Create", null, new { @class = "add-new" })
         }
