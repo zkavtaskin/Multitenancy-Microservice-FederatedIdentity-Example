@@ -219,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\GroupHub.cs" />
+    <Compile Include="Middleware\ClaimsPrincipalExtension.cs" />
     <Compile Include="Middleware\AppBuilderExtensions.cs" />
     <Compile Include="Middleware\AuthenticationAudienceCheckMiddleware.cs" />
     <Compile Include="Middleware\AuthenticationClaimsAppenderMiddleware.cs" />

@@ -9,7 +9,6 @@ namespace Web.Controllers
     public abstract class LoggedInController : Controller
     {
         protected readonly IUserService userService;
-        protected UserDto user;
 
         protected LoggedInController(IUserService userService)
         {
@@ -19,10 +18,10 @@ namespace Web.Controllers
         protected override void EndExecute(IAsyncResult asyncResult)
         {
             string id = ((ClaimsPrincipal)this.User).FindFirst(ClaimTypes.NameIdentifier).Value;
-            this.user = this.userService.GetUserByIdpID(id);
+            UserDto userDto = this.userService.GetUserByIdpID(id);
 
-            this.ViewBag.UserFullName = user.FullName;
-            this.ViewBag.UserInitials = user.Initials;
+            this.ViewBag.UserFullName = userDto.FullName;
+            this.ViewBag.UserInitials = userDto.Initials;
 
             base.EndExecute(asyncResult);
         }

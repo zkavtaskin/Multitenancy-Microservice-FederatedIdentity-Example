@@ -7,9 +7,11 @@ using Server.Service.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 using Server.Service;
 using Web.Hubs;
+using Web.Middleware;
 using Web.Models.Group;
 
 namespace Web.Controllers
@@ -107,7 +109,7 @@ namespace Web.Controllers
         {
             if(model.IsInvited)
             {
-                this.groupService.UninviteUser(this.user.Id, model.GroupId, model.Email);
+                this.groupService.UninviteUser(((ClaimsPrincipal)this.User).AppUserId(), model.GroupId, model.Email);
             }
             else
             {
@@ -211,7 +213,7 @@ namespace Web.Controllers
 
                     if (user == null)
                     {
-                        this.groupService.InviteUser(this.user.Id, group.Id, email);
+                        this.groupService.InviteUser(((ClaimsPrincipal)this.User).AppUserId(), group.Id, email);
                     }
                     else
                     {
@@ -239,7 +241,7 @@ namespace Web.Controllers
 
                 if (user == null)
                 {
-                    this.groupService.InviteUser(this.user.Id, model.GroupId, model.Email);
+                    this.groupService.InviteUser(((ClaimsPrincipal)this.User).AppUserId(), model.GroupId, model.Email);
                 }
                 else
                 {

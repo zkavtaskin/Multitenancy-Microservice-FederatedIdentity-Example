@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 using Server.Service;
+using Web.Middleware;
 using Web.Models;
 
 namespace Web.Controllers
@@ -20,18 +22,20 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            UserSettingModel model = new UserSettingModel();
-            model.FullName = this.user.FullName;
-            model.Email = this.user.Email;
+            UserDto user = this.userService.GetUserByIdpID(((ClaimsPrincipal) this.User).IdentityProviderUserId());
 
-            if(this.user.Contacts.Any())
+            UserSettingModel model = new UserSettingModel();
+            model.FullName = user.FullName;
+            model.Email = user.Email;
+
+            if(user.Contacts.Any())
             {
-                model.PrimaryNumber = this.user.Contacts.First().Value;
+                model.PrimaryNumber = user.Contacts.First().Value;
             }
 
             if(user.Contacts.Count == 2)
             {
-                model.SecondaryNumber = this.user.Contacts[1].Value;
+                model.SecondaryNumber = user.Contacts[1].Value;
             }
 
             return View(model);
@@ -44,8 +48,9 @@ namespace Web.Controllers
             {
                 model.Email = model.Email.ToLower();
 
-                
-                if(this.user.Email != model.Email)
+                UserDto user = this.userService.GetUserByIdpID(((ClaimsPrincipal)this.User).IdentityProviderUserId());
+
+                if (user.Email != model.Email)
                 {
                     List<UserDto> users = this.userService.GetUsers();
                     List<UserInviteDto> userInvites = this.userService.GetUserInvites();
@@ -56,30 +61,30 @@ namespace Web.Controllers
                         return View(model);
                     }
                 
-                    this.userService.ChangeEmail(this.user.Id, model.Email);
+                    this.userService.ChangeEmail(user.Id, model.Email);
                 } 
 
-                this.userService.ChangeName(this.user.Id, model.FullName);
+                this.userService.ChangeName(user.Id, model.FullName);
 
                 this.userService.ChangeContact(
-                        this.user.Id,
-                         new ContactDto()
-                         {
-                             Type = global::Server.Service.Users.Contact.PrimaryNumber,
-                             Value = model.PrimaryNumber
-                         }
-                     );
+                    user.Id,
+                    new ContactDto()
+                    {
+                        Type = global::Server.Service.Users.Contact.PrimaryNumber,
+                        Value = model.PrimaryNumber
+                    }
+                );
 
                 if (!String.IsNullOrEmpty(model.SecondaryNumber))
                 {
                     this.userService.ChangeContact(
-                                this.user.Id,
-                                new ContactDto()
-                                {
-                                    Type = global::Server.Service.Users.Contact.SecondaryNumber,
-                                    Value = model.SecondaryNumber
-                                }
-                            );
+                        user.Id,
+                        new ContactDto()
+                        {
+                            Type = global::Server.Service.Users.Contact.SecondaryNumber,
+                            Value = model.SecondaryNumber
+                        }
+                    );
                 }
 
             }

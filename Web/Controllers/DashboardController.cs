@@ -6,9 +6,11 @@ using Server.Service.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 using Server.Service;
 using Web.Hubs;
+using Web.Middleware;
 using Web.Models;
 using Web.Models.Dashboard;
 
@@ -46,7 +48,7 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                StopDto stop = this.stopService.Create(this.user.Id, model.GroupId, model.Reason);
+                StopDto stop = this.stopService.Create(((ClaimsPrincipal)this.User).AppUserId(), model.GroupId, model.Reason);
 
                 Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<GroupHub>()
                     .Clients.All.groupLifeCycleStateChange(this.tenantContext.FriendlyName, Web.Models.Group.LifeCycleState.Stopped.ToString());
@@ -59,7 +61,7 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Resume(Guid stopId)
         {
-            this.stopService.ProblemResolved(this.user.Id, stopId);
+            this.stopService.ProblemResolved(((ClaimsPrincipal)this.User).AppUserId(), stopId);
 
             Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<GroupHub>()
                 .Clients.All.groupLifeCycleStateChange(this.tenantContext.FriendlyName, Web.Models.Group.LifeCycleState.Resumed.ToString());
@@ -89,7 +91,7 @@ namespace Web.Controllers
             StopDto currentUserStoppedGroup = null;
             foreach (StopDto unresolvedGroup in unresolvedGroups)
             {
-                if (unresolvedGroup.ById == this.user.Id)
+                if (unresolvedGroup.ById == ((ClaimsPrincipal)this.User).AppUserId())
                 {
                     currentUserStoppedGroup = unresolvedGroup;
                     break;
@@ -128,7 +130,7 @@ namespace Web.Controllers
                 groupState.Name = group.Name;
                 groupState.GroupId = group.Id;
                 groupState.State = Web.Models.Group.State.Working;
-                groupState.CanStop = group.Users.Exists(user => user.Id == this.user.Id);
+                groupState.CanStop = group.Users.Exists(user => user.Id == ((ClaimsPrincipal)this.User).AppUserId());
 
                 if (stopHash.ContainsKey(group.Id))
                 {
