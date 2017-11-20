@@ -7,6 +7,7 @@ using System.Web;
 
 namespace Web.Controllers
 {
+    [AllowAnonymous]
     public class TenantController : Controller
     {
         ITenantService tenantService;

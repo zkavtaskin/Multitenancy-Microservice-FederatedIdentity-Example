@@ -1,18 +1,15 @@
 ﻿using Server.Service.Users;
 using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Server.Service;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.OpenIdConnect;
 using System.Security.Claims;
 using System.Linq;
-using System.Web.Routing;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class UserSetupController : Controller
     {
         IUserService userService;
@@ -22,30 +19,6 @@ namespace Web.Controllers
         {
             this.userService = userService;
             this.tenantContext = tenantContext;
-        }
-
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
-        {
-            if (!requestContext.HttpContext.Request.IsAuthenticated)
-            {
-                requestContext.HttpContext.GetOwinContext().Authentication.Challenge(
-                    new AuthenticationProperties
-                    {
-                        RedirectUri = requestContext.HttpContext.Request.Url.OriginalString
-                    },
-                    OpenIdConnectAuthenticationDefaults.AuthenticationType);
-
-                return base.BeginExecute(requestContext, callback, state);
-            }
-
-            ClaimsPrincipal claimsPrincipal = ((ClaimsPrincipal)requestContext.HttpContext.User);
-            string audience = claimsPrincipal.FindFirst("aud").Value;
-            if (audience != this.tenantContext.AuthClientId)
-            {
-                throw new Exception("Client ID and Audience ID are not matching");
-            }
-
-            return base.BeginExecute(requestContext, callback, state);
         }
 
         [HttpGet]

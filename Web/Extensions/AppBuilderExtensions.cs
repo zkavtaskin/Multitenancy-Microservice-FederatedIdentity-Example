@@ -5,15 +5,13 @@ using Server.Core.Container;
 using Server.Service;
 using System.Collections.Generic;
 using System.Threading;
-using System.Web.Mvc;
-using log4net;
 using Microsoft.Owin.BuilderProperties;
+using Web.Middleware;
 
-namespace Web.Middleware
+namespace Web.Extensions
 {
     public static class AppBuilderExtensions
     {
-
         public static IAppBuilder UseMultitenancy(this IAppBuilder app, MultitenancyNotifications notifications)
         {
             return app.Use((context, next) =>

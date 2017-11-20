@@ -8,11 +8,6 @@ namespace Web.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        public LoginController()
-        {
-
-        }
-        
         [HttpGet]
         public ActionResult Logout()
         {

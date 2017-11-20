@@ -22,6 +22,9 @@ namespace Web.Middleware
             string idpID = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
             UserDto userDto = userService.GetUserByIdpID(idpID);
 
+            if (userDto == null)
+                return this.Next.Invoke(context);
+
             ClaimsIdentity claimsIdentity = claimsPrincipal.Identity as ClaimsIdentity;
             claimsIdentity.AddClaim(new Claim(ClaimTypesExtension.AppUserId, userDto.Id.ToString()));
             claimsIdentity.AddClaim(new Claim(ClaimTypesExtension.AppUserFullName, userDto.FullName));

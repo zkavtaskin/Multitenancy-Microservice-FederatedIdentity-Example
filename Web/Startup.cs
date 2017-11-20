@@ -18,6 +18,7 @@ using Web.Middleware;
 using Microsoft.Owin.Security.Cookies;
 using System.Web.Helpers;
 using System.IdentityModel.Claims;
+using Web.Extensions;
 
 [assembly: OwinStartup(typeof(Web.Startup))]
 namespace Web
