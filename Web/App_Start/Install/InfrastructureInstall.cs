@@ -46,15 +46,14 @@ namespace Web.App_Start.Install
                 .DependsOn(Dependency.OnComponent<IUnitOfWork, NHUnitOfWorkMultitenancy>())
                 .LifeStyle.Is(LifestyleType.PerWebRequest));
 
-
-
-            /*
-            container.Register(Component.For<IEmailDispatcher>()
-                .ImplementedBy<SendGridEmailDispatcher>().LifeStyle.Is(LifestyleType.Singleton));
-                */
+#if DEBUG
 
             container.Register(Component.For<IEmailDispatcher>()
                 .ImplementedBy<MemDebugEmailDispatcher>().LifeStyle.Is(LifestyleType.Singleton));
+#else
+                        container.Register(Component.For<IEmailDispatcher>()
+                .ImplementedBy<SendGridEmailDispatcher>().LifeStyle.Is(LifestyleType.Singleton));
+#endif
 
             container.Register(Component.For<MessageFormater<EmailTemplate, EmailMessage>>()
                 .ImplementedBy<EmailMessageFormater>()

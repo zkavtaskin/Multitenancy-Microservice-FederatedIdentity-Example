@@ -24,7 +24,7 @@ namespace Web.Middleware
             {
                 context.Authentication.Challenge(new AuthenticationProperties
                 {
-                    RedirectUri = $"/{tenantContext.FriendlyName}/"
+                    RedirectUri = context.Request.Uri.AbsoluteUri
                 }, OpenIdConnectAuthenticationDefaults.AuthenticationType);
 
                 return Task.FromResult<int>(0);

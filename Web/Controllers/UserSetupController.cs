@@ -89,7 +89,7 @@ namespace Web.Controllers
             if (!string.IsNullOrEmpty(model.SecondaryNumber))
                 contacts.Add(new ContactDto() { Value = model.SecondaryNumber, Type = global::Server.Service.Users.Contact.SecondaryNumber });
 
-            this.userService.Add(idpID, model.Email, model.FullName, contacts, isAdmin);
+            this.userService.Add(idpID, email, model.FullName, contacts, isAdmin);
         }
 
     }
