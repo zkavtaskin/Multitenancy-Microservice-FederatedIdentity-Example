@@ -9,12 +9,9 @@ namespace Web.Middleware
 {
     public class AuthenticationChallangeMiddleware : OwinMiddleware
     {
-        readonly TenantContext tenantContext;
-
-        public AuthenticationChallangeMiddleware(OwinMiddleware next, TenantContext tenantContext)
+        public AuthenticationChallangeMiddleware(OwinMiddleware next)
             : base(next)
         {
-            this.tenantContext = tenantContext;
         }
 
         public override Task Invoke(IOwinContext context)
@@ -27,7 +24,7 @@ namespace Web.Middleware
                     RedirectUri = context.Request.Uri.AbsoluteUri
                 }, OpenIdConnectAuthenticationDefaults.AuthenticationType);
 
-                return Task.FromResult<int>(0);
+                return Task.FromResult(0);
             }
 
             return this.Next.Invoke(context);

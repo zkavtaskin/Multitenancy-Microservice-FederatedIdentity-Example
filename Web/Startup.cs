@@ -84,7 +84,7 @@ namespace Web
                     }
                 });
 
-                appBranch.Use<AuthenticationChallangeMiddleware>(tenantContext);
+                appBranch.Use<AuthenticationChallangeMiddleware>();
                 appBranch.Use<AuthenticationAudienceCheckMiddleware>(tenantContext);
                 appBranch.Use<AuthenticationClaimsAppenderMiddleware>();
             });

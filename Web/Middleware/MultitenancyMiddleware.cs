@@ -29,20 +29,18 @@ namespace Web.Middleware
             if (string.IsNullOrEmpty(name))
             {
                 await this.notifications.TenantNameCouldNotBeFound(context);
+                return;
             }
-            else
+
+            TenantDto tenant = this.tenantResolver.GetTenant(name);
+            if (tenant == null)
             {
-                TenantDto tenant = this.tenantResolver.GetTenant(name);
-                if (tenant == null)
-                {
-                    await this.notifications.TenantDataCouldNotBeResolved(context);
-                }
-                else
-                {
-                    await this.notifications.TenantDataResolved(context, this.tenantContextFactory, tenant);
-                    await next();
-                }
+                await this.notifications.TenantDataCouldNotBeResolved(context);
+                return;
             }
+
+            await this.notifications.TenantDataResolved(context, this.tenantContextFactory, tenant);
+            await next();
         }
     }
 }

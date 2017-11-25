@@ -229,7 +229,7 @@
     <Compile Include="Middleware\MultitenancyNotifications.cs" />
     <Compile Include="Middleware\MultitenancyMiddleware.cs" />
     <Compile Include="Middleware\RouteDataTokensTenantNameExtractor.cs" />
-    <Compile Include="Middleware\CacheTenantResolver.cs" />
+    <Compile Include="Middleware\TenantResolverCacheDecorator.cs" />
     <Compile Include="Middleware\TenantPipelineMiddleware.cs" />
     <Compile Include="Middleware\TenantResolver.cs" />
     <Compile Include="Models\Broadcast\GroupStopModel.cs" />

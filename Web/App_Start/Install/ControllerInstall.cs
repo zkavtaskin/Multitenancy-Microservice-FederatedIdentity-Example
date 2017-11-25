@@ -36,7 +36,7 @@ namespace Web.App_Start.Install
                 .ImplementedBy<TenantResolver>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
             container.Register(Component.For<Middleware.ITenantResolver>()
-                .ImplementedBy<CacheTenantResolver>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
+                .ImplementedBy<TenantResolverCacheDecorator>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
         }
     }

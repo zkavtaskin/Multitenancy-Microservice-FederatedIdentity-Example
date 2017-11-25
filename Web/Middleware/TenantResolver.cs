@@ -13,12 +13,7 @@ namespace Web.Middleware
 
         public TenantDto GetTenant(string tenantName)
         {
-            TenantDto tenantDto = this.tenantService.Get(tenantName);
-            if (tenantDto != null)
-            {
-                return tenantDto;
-            }
-            return null;
+            return this.tenantService.Get(tenantName);
         }
     }
 }

@@ -19,23 +19,22 @@ namespace Web.Middleware
 
         public async Task Invoke(IDictionary<string, object> env, Func<IDictionary<string, object>, Task> next, IAppBuilder rootApp, TenantContext tenantContext, Action<TenantContext, IAppBuilder> newBranchAppConfig)
         {
-            if (!tenantContext.IsEmpty())
-            {
-                Lazy<Func<IDictionary<string, object>, Task>> branch = 
-                    branches.GetOrAdd(tenantContext, new Lazy<Func<IDictionary<string, object>, Task>>(() =>
-                    {
-                        IAppBuilder newAppBuilderBranch = rootApp.New();
-                        newBranchAppConfig(tenantContext, newAppBuilderBranch);
-                        newAppBuilderBranch.Run((dic) => { return next(dic.Environment); });
-                        return newAppBuilderBranch.Build();
-                    }));
-
-                await branch.Value(env);
-            }
-            else
+            if (tenantContext.IsEmpty())
             {
                 await next(env);
+                return;
             }
+
+            Lazy<Func<IDictionary<string, object>, Task>> branch = 
+                branches.GetOrAdd(tenantContext, new Lazy<Func<IDictionary<string, object>, Task>>(() =>
+                {
+                    IAppBuilder newAppBuilderBranch = rootApp.New();
+                    newBranchAppConfig(tenantContext, newAppBuilderBranch);
+                    newAppBuilderBranch.Run((dic) => next(dic.Environment));
+                    return newAppBuilderBranch.Build();
+                }));
+
+            await branch.Value(env);
         }
     }
 }
