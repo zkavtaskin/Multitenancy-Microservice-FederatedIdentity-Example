@@ -23,14 +23,7 @@ namespace Web.Extensions
 
         public static IAppBuilder UsePerTenant(this IAppBuilder app, Action<TenantContext, IAppBuilder> newBranchAppConfig)
         {
-            app.Use(new Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>(
-                next => (async (env) => {
-                    TenantContext tenantContext = ServiceLocator.Resolve<TenantContext>();
-                    await new TenantPipelineMiddleware().Invoke(env, next, app, tenantContext, newBranchAppConfig);
-                }))
-            );
-
-            return app;
+            return app.Use<TenantPipelineMiddleware>(app, newBranchAppConfig);
         }
 
         public static IAppBuilder OnDispose(this IAppBuilder app, Action doOnDispose)

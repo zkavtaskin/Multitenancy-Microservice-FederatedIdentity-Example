@@ -52,12 +52,13 @@ namespace Web
                 },
                 TenantDataResolved = (context, tenantDto) =>
                 {
-                    ServiceLocator.Resolve<ITenantContextFactory>().Create(tenantDto.Id,
+                    ITenantContextFactory tenantContextFactory = ServiceLocator.Resolve<ITenantContextFactory>();
+                    TenantContext tenantContext = tenantContextFactory.Create(tenantDto.Id,
                         tenantDto.NameFriendly,
                         tenantDto.AuthClientId,
                         tenantDto.AuthAuthority);
 
-                    return Task.FromResult(0);
+                    return Task.FromResult(tenantContext);
                 }
             });
             app.UsePerTenant((tenantContext, appBranch) =>

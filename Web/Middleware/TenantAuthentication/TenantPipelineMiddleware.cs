@@ -5,6 +5,8 @@ using Owin;
 using Server.Service;
 using Microsoft.Owin.Builder;
 using System.Collections.Generic;
+using Microsoft.Owin;
+using Server.Core.Container;
 
 namespace Web.Middleware
 {
@@ -12,16 +14,27 @@ namespace Web.Middleware
     /// Workaround for the known OpenID multitenancy issue https://github.com/aspnet/Security/issues/1179
     /// based on http://benfoster.io/blog/aspnet-core-multi-tenant-middleware-pipelines and https://weblogs.asp.net/imranbaloch/conditional-middleware-in-aspnet-core designs 
     /// </summary>
-    public class TenantPipelineMiddleware
+    public class TenantPipelineMiddleware : OwinMiddleware
     {
-        private static readonly ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>> branches
-            = new ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>>();
+        readonly IAppBuilder rootApp;
+        readonly Action<TenantContext, IAppBuilder> newBranchAppConfig;
+        readonly ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>> branches;
 
-        public async Task Invoke(IDictionary<string, object> env, Func<IDictionary<string, object>, Task> next, IAppBuilder rootApp, TenantContext tenantContext, Action<TenantContext, IAppBuilder> newBranchAppConfig)
+        public TenantPipelineMiddleware(OwinMiddleware next, IAppBuilder rootApp, Action<TenantContext, IAppBuilder> newBranchAppConfig)
+            : base(next)
         {
-            if (tenantContext.IsEmpty())
+            this.rootApp = rootApp;
+            this.newBranchAppConfig = newBranchAppConfig;
+            this.branches = new ConcurrentDictionary<TenantContext, Lazy<Func<IDictionary<string, object>, Task>>>();
+        }
+
+        public override async Task Invoke(IOwinContext context)
+        {
+            context.Environment.TryGetValue("tenantcontext", out object value);
+
+            if (!(value is TenantContext tenantContext) || tenantContext.IsEmpty())
             {
-                await next(env);
+                await this.Next.Invoke(context);
                 return;
             }
 
@@ -30,11 +43,11 @@ namespace Web.Middleware
                 {
                     IAppBuilder newAppBuilderBranch = rootApp.New();
                     newBranchAppConfig(tenantContext, newAppBuilderBranch);
-                    newAppBuilderBranch.Run((dic) => next(dic.Environment));
+                    newAppBuilderBranch.Run((oc) => this.Next.Invoke(oc));
                     return newAppBuilderBranch.Build();
                 }));
 
-            await branch.Value(env);
+            await branch.Value(context.Environment);
         }
     }
 }
