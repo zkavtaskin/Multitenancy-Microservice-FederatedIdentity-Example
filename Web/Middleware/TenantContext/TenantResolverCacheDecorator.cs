@@ -6,7 +6,7 @@ namespace Web.Middleware
 {
     public class TenantResolverCacheDecorator : ITenantResolver
     {
-        private TenantResolver tenantResolver;
+        readonly TenantResolver tenantResolver;
 
         public TenantResolverCacheDecorator(TenantResolver tenantResolver)
         {

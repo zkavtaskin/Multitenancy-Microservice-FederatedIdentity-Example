@@ -16,15 +16,8 @@ namespace Web.Extensions
         {
             return app.Use((context, next) =>
             {
-                ITenantNameExtractor tenantNameExtractor = ServiceLocator.Resolve<ITenantNameExtractor>(new { context });
-
-                if (tenantNameExtractor.CanExtract())
-                {
-                    MultitenancyMiddleware multitenancyMiddleware = ServiceLocator.Resolve<MultitenancyMiddleware>(new { notifications });
-                    return multitenancyMiddleware.Invoke(context, next);
-                }
-
-                return next();
+                MultitenancyMiddleware multitenancyMiddleware = ServiceLocator.Resolve<MultitenancyMiddleware>(new { next, notifications });
+                return multitenancyMiddleware.Invoke(context);
             });
         }
 

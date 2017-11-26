@@ -18,6 +18,7 @@ using Web.Middleware;
 using Microsoft.Owin.Security.Cookies;
 using System.Web.Helpers;
 using System.IdentityModel.Claims;
+using System.IdentityModel.Tokens;
 using Web.Extensions;
 
 [assembly: OwinStartup(typeof(Web.Startup))]
@@ -49,14 +50,13 @@ namespace Web
                     context.Response.Redirect("/signup/tenant/");
                     return Task.FromResult(0);
                 },
-                TenantDataResolved = (context, tenantContextFactory, tenantDto) =>
+                TenantDataResolved = (context, tenantDto) =>
                 {
-                    tenantContextFactory.Create(
-                        tenantDto.Id,
+                    ServiceLocator.Resolve<ITenantContextFactory>().Create(tenantDto.Id,
                         tenantDto.NameFriendly,
                         tenantDto.AuthClientId,
-                        tenantDto.AuthAuthority
-                    );
+                        tenantDto.AuthAuthority);
+
                     return Task.FromResult(0);
                 }
             });
