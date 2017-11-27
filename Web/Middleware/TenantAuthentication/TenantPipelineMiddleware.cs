@@ -30,9 +30,11 @@ namespace Web.Middleware
 
         public override async Task Invoke(IOwinContext context)
         {
-            context.Environment.TryGetValue("tenantcontext", out object value);
+            object value;
+            context.Environment.TryGetValue("tenantcontext", out value);
+            TenantContext tenantContext = value as TenantContext;
 
-            if (!(value is TenantContext tenantContext) || tenantContext.IsEmpty())
+            if (tenantContext == null || tenantContext.IsEmpty())
             {
                 await this.Next.Invoke(context);
                 return;
