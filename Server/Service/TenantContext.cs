@@ -4,7 +4,7 @@ namespace Server.Service
 {
     public sealed class TenantContext
     {
-        public  Guid ID { get; private set; }
+        public Guid ID { get; private set; }
         public string FriendlyName { get; private set; }
         public string AuthClientId { get; private set; }
         public string AuthAuthority { get; private set; }

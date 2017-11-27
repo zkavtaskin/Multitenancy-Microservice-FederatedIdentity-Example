@@ -6,7 +6,7 @@ using Server.Service;
 using Microsoft.Owin.Builder;
 using System.Collections.Generic;
 using Microsoft.Owin;
-using Server.Core.Container;
+using Web.Extensions;
 
 namespace Web.Middleware
 {
@@ -30,9 +30,7 @@ namespace Web.Middleware
 
         public override async Task Invoke(IOwinContext context)
         {
-            object value;
-            context.Environment.TryGetValue("tenantcontext", out value);
-            TenantContext tenantContext = value as TenantContext;
+            TenantContext tenantContext = context.GetTenantContext();
 
             if (tenantContext == null || tenantContext.IsEmpty())
             {

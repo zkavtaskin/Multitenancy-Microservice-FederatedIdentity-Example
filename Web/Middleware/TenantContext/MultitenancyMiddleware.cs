@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Owin;
 using System.Threading.Tasks;
 using Server.Service;
 using Server.Service.Tenants;
+using Web.Extensions;
 
 namespace Web.Middleware
 {
@@ -48,7 +48,7 @@ namespace Web.Middleware
 
             TenantContext tenantContext = await this.notifications.TenantDataResolved(context, tenant);
 
-            context.Environment.Add("tenantcontext", tenantContext);
+            context.SetTenantContext(tenantContext);
 
             await this.next();
         }

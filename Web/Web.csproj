@@ -212,6 +212,7 @@
     <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="Controllers\TenantSettingsController.cs" />
     <Compile Include="Controllers\UserSetupController.cs" />
+    <Compile Include="Extensions\OwinContextExtensions.cs" />
     <Compile Include="Filters\CustomHandleErrorAttribute.cs" />
     <Compile Include="Filters\ValidateHttpAntiForgeryTokenAttribute.cs" />
     <Compile Include="Global.asax.cs">
