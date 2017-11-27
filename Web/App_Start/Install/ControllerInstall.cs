@@ -3,6 +3,7 @@ using Castle.Windsor;
 using Server.Service;
 using System.Web.Mvc;
 using Castle.Facilities.TypedFactory;
+using Server.Service.Tenants;
 using Web.Middleware;
 
 namespace Web.App_Start.Install
@@ -26,8 +27,8 @@ namespace Web.App_Start.Install
 
             container.Register(Component.For<ITenantContextFactory>().AsFactory());
 
-            container.Register(Component.For<MultitenancyMiddleware>()
-                .ImplementedBy<MultitenancyMiddleware>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
+            container.Register(Component.For<MultitenancyMiddleware<TenantDto>>()
+                .ImplementedBy<MultitenancyMiddleware<TenantDto>>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
             container.Register(Component.For<ITenantNameExtractor>()
                 .ImplementedBy<RouteDataTokensTenantNameExtractor>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
@@ -35,7 +36,7 @@ namespace Web.App_Start.Install
             container.Register(Component.For<TenantResolver>()
                 .ImplementedBy<TenantResolver>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
-            container.Register(Component.For<Middleware.ITenantResolver>()
+            container.Register(Component.For<Middleware.ITenantResolver<TenantDto>>()
                 .ImplementedBy<TenantResolverCacheDecorator>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
         }

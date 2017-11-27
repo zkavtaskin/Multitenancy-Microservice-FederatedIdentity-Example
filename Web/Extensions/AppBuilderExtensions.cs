@@ -12,11 +12,14 @@ namespace Web.Extensions
 {
     public static class AppBuilderExtensions
     {
-        public static IAppBuilder UseMultitenancy(this IAppBuilder app, MultitenancyNotifications notifications)
+        public static IAppBuilder UseMultitenancy<TTenantRecord>(this IAppBuilder app, 
+            MultitenancyNotifications<TTenantRecord> notifications)
+            where TTenantRecord : class
         {
             return app.Use((context, next) =>
             {
-                MultitenancyMiddleware multitenancyMiddleware = ServiceLocator.Resolve<MultitenancyMiddleware>(new { next, notifications });
+                MultitenancyMiddleware<TTenantRecord> multitenancyMiddleware = 
+                    ServiceLocator.Resolve<MultitenancyMiddleware<TTenantRecord>>(new { next, notifications });
                 return multitenancyMiddleware.Invoke(context);
             });
         }

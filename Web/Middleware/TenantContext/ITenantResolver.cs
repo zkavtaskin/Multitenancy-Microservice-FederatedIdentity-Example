@@ -2,8 +2,8 @@
 
 namespace Web.Middleware
 {
-    public interface ITenantResolver
+    public interface ITenantResolver<TTenant>
     {
-        TenantDto GetTenant(string tenantName);
+        TTenant GetTenant(string tenantName);
     }
 }

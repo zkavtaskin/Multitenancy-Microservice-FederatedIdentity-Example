@@ -7,15 +7,16 @@ using Web.Extensions;
 
 namespace Web.Middleware
 {
-    public class MultitenancyMiddleware
+    public class MultitenancyMiddleware<TTenantRecord>
+        where TTenantRecord : class
     {
         readonly ITenantNameExtractor tenantNameExtractor;
-        readonly ITenantResolver tenantResolver;
-        readonly MultitenancyNotifications notifications;
+        readonly ITenantResolver<TTenantRecord> tenantResolver;
+        readonly MultitenancyNotifications<TTenantRecord> notifications;
         readonly Func<Task> next;
 
         public MultitenancyMiddleware(Func<Task> next, ITenantNameExtractor tenantNameExtractor, 
-            ITenantResolver tenantResolver,  MultitenancyNotifications notifications)
+            ITenantResolver<TTenantRecord> tenantResolver,  MultitenancyNotifications<TTenantRecord> notifications)
         {
             this.tenantNameExtractor = tenantNameExtractor;
             this.tenantResolver = tenantResolver;
@@ -39,14 +40,14 @@ namespace Web.Middleware
                 return;
             }
 
-            TenantDto tenant = this.tenantResolver.GetTenant(name);
-            if (tenant == null)
+            TTenantRecord tenantRecord = this.tenantResolver.GetTenant(name);
+            if (tenantRecord == null)
             {
                 await this.notifications.TenantDataCouldNotBeResolved(context);
                 return;
             }
 
-            TenantContext tenantContext = await this.notifications.TenantDataResolved(context, tenant);
+            TenantContext tenantContext = await this.notifications.TenantDataResolved(context, tenantRecord);
 
             context.SetTenantContext(tenantContext);
 

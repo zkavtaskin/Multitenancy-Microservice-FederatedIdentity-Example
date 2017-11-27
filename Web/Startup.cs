@@ -18,7 +18,7 @@ using Web.Middleware;
 using Microsoft.Owin.Security.Cookies;
 using System.Web.Helpers;
 using System.IdentityModel.Claims;
-using System.IdentityModel.Tokens;
+using Server.Service.Tenants;
 using Web.Extensions;
 
 [assembly: OwinStartup(typeof(Web.Startup))]
@@ -39,7 +39,7 @@ namespace Web
 
             logger.Info("Configuring HTTP Middleware");
             app.MapSignalR();
-            app.UseMultitenancy(new MultitenancyNotifications
+            app.UseMultitenancy(new MultitenancyNotifications<TenantDto>
             {
                 TenantNameCouldNotBeFound = context =>
                 {
@@ -50,14 +50,10 @@ namespace Web
                     context.Response.Redirect("/signup/tenant/");
                     return Task.FromResult(0);
                 },
-                TenantDataResolved = (context, tenantDto) =>
+                TenantDataResolved = (context, tenantRecord) =>
                 {
                     ITenantContextFactory tenantContextFactory = ServiceLocator.Resolve<ITenantContextFactory>();
-                    TenantContext tenantContext = tenantContextFactory.Create(tenantDto.Id,
-                        tenantDto.NameFriendly,
-                        tenantDto.AuthClientId,
-                        tenantDto.AuthAuthority);
-
+                    TenantContext tenantContext = tenantContextFactory.Create(tenantRecord.Id, tenantRecord.NameFriendly, tenantRecord.AuthClientId, tenantRecord.AuthAuthority);
                     return Task.FromResult(tenantContext);
                 }
             });

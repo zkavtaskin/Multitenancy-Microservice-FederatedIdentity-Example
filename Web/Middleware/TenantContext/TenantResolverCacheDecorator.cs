@@ -4,7 +4,7 @@ using Server.Service.Tenants;
 
 namespace Web.Middleware
 {
-    public class TenantResolverCacheDecorator : ITenantResolver
+    public class TenantResolverCacheDecorator : ITenantResolver<TenantDto>
     {
         readonly TenantResolver tenantResolver;
 

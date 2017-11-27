@@ -2,7 +2,7 @@
 
 namespace Web.Middleware
 {
-    public class TenantResolver : ITenantResolver
+    public class TenantResolver : ITenantResolver<TenantDto>
     {
         readonly ITenantService tenantService;
 

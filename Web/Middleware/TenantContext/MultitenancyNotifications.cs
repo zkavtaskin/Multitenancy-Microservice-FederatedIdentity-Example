@@ -6,17 +6,18 @@ using Server.Service.Tenants;
 
 namespace Web.Middleware
 {
-    public class MultitenancyNotifications
+    public class MultitenancyNotifications<TTenantRecord>
+        where TTenantRecord : class
     {
         public Func<IOwinContext, Task> TenantDataCouldNotBeResolved { get; set; }
         public Func<IOwinContext, Task> TenantNameCouldNotBeFound { get; set; }
-        public Func<IOwinContext, TenantDto, Task<TenantContext>> TenantDataResolved { get; set; }
+        public Func<IOwinContext, TTenantRecord, Task<TenantContext>> TenantDataResolved { get; set; }
 
         public MultitenancyNotifications()
         {
             this.TenantDataCouldNotBeResolved = context => Task.FromResult(0);
             this.TenantNameCouldNotBeFound = context => Task.FromResult(0);
-            this.TenantDataResolved = (context, tenantDto) => Task.FromResult<TenantContext>(null);
+            this.TenantDataResolved = (context, tenantRecord) => Task.FromResult<TenantContext>(null);
         }
     }
 }
