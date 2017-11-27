@@ -36,18 +36,18 @@ namespace Web.Middleware
 
             if (string.IsNullOrEmpty(name))
             {
-                await this.notifications.TenantNameCouldNotBeFound(context);
+                await this.notifications.TenantNameNotFound(context);
                 return;
             }
 
             TTenantRecord tenantRecord = this.tenantResolver.GetTenant(name);
             if (tenantRecord == null)
             {
-                await this.notifications.TenantDataCouldNotBeResolved(context);
+                await this.notifications.TenantRecordNotFound(context);
                 return;
             }
 
-            TenantContext tenantContext = await this.notifications.TenantDataResolved(context, tenantRecord);
+            TenantContext tenantContext = await this.notifications.CreateTenantContext(context, tenantRecord);
 
             context.SetTenantContext(tenantContext);
 

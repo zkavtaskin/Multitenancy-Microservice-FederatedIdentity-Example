@@ -9,15 +9,15 @@ namespace Web.Middleware
     public class MultitenancyNotifications<TTenantRecord>
         where TTenantRecord : class
     {
-        public Func<IOwinContext, Task> TenantDataCouldNotBeResolved { get; set; }
-        public Func<IOwinContext, Task> TenantNameCouldNotBeFound { get; set; }
-        public Func<IOwinContext, TTenantRecord, Task<TenantContext>> TenantDataResolved { get; set; }
+        public Func<IOwinContext, Task> TenantNameNotFound { get; set; }
+        public Func<IOwinContext, Task> TenantRecordNotFound { get; set; }
+        public Func<IOwinContext, TTenantRecord, Task<TenantContext>> CreateTenantContext { get; set; }
 
         public MultitenancyNotifications()
         {
-            this.TenantDataCouldNotBeResolved = context => Task.FromResult(0);
-            this.TenantNameCouldNotBeFound = context => Task.FromResult(0);
-            this.TenantDataResolved = (context, tenantRecord) => Task.FromResult<TenantContext>(null);
+            this.TenantNameNotFound = context => Task.FromResult(0);
+            this.TenantRecordNotFound = context => Task.FromResult(0);
+            this.CreateTenantContext = (context, tenantRecord) => Task.FromResult<TenantContext>(null);
         }
     }
 }

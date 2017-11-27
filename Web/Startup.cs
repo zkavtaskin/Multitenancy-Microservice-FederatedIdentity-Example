@@ -41,16 +41,16 @@ namespace Web
             app.MapSignalR();
             app.UseMultitenancy(new MultitenancyNotifications<TenantDto>
             {
-                TenantNameCouldNotBeFound = context =>
+                TenantNameNotFound = context =>
                 {
                     throw new HttpException(400, "Tenant name must be provided");
                 },
-                TenantDataCouldNotBeResolved = context =>
+                TenantRecordNotFound = context =>
                 {
                     context.Response.Redirect("/signup/tenant/");
                     return Task.FromResult(0);
                 },
-                TenantDataResolved = (context, tenantRecord) =>
+                CreateTenantContext = (context, tenantRecord) =>
                 {
                     ITenantContextFactory tenantContextFactory = ServiceLocator.Resolve<ITenantContextFactory>();
                     TenantContext tenantContext = tenantContextFactory.Create(tenantRecord.Id, tenantRecord.NameFriendly, tenantRecord.AuthClientId, tenantRecord.AuthAuthority);
