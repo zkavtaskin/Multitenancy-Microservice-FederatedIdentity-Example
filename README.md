@@ -1,4 +1,4 @@
-# Multitenancy, Microservice and Federated Identity Example
+# Multitenancy and Federated Identity example (work in progress)
 
 ![Alt text](https://leanworkspace.visualstudio.com/_apis/public/build/definitions/3c44af5e-2843-4cf8-8e4f-b13743536cc3/4/badge?api-version=4.1-preview)
 
