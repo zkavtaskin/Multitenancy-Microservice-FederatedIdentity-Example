@@ -2,9 +2,9 @@
 
 namespace Web.Middleware
 {
-    public interface ITenantNameExtractor
+    public interface ITenantIdentifierExtractor
     {
         bool CanExtract(IOwinContext context);
-        string GetName(IOwinContext context);
+        string GetIdentifier(IOwinContext context);
     }
 }

@@ -41,9 +41,9 @@ namespace Web
             app.MapSignalR();
             app.UseMultitenancy(new MultitenancyNotifications<TenantDto>
             {
-                TenantNameNotFound = context =>
+                TenantIdentifierNotFound = context =>
                 {
-                    throw new HttpException(400, "Tenant name must be provided");
+                    throw new HttpException(404, "Tenant identifier must be provided");
                 },
                 TenantRecordNotFound = context =>
                 {

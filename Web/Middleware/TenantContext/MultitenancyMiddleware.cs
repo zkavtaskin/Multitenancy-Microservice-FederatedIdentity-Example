@@ -10,37 +10,37 @@ namespace Web.Middleware
     public class MultitenancyMiddleware<TTenantRecord>
         where TTenantRecord : class
     {
-        readonly ITenantNameExtractor tenantNameExtractor;
-        readonly ITenantResolver<TTenantRecord> tenantResolver;
+        readonly ITenantIdentifierExtractor tenantIdentifierExtractor;
+        readonly ITenantRecordResolver<TTenantRecord> tenantRecordResolver;
         readonly MultitenancyNotifications<TTenantRecord> notifications;
         readonly Func<Task> next;
 
-        public MultitenancyMiddleware(Func<Task> next, ITenantNameExtractor tenantNameExtractor, 
-            ITenantResolver<TTenantRecord> tenantResolver,  MultitenancyNotifications<TTenantRecord> notifications)
+        public MultitenancyMiddleware(Func<Task> next, ITenantIdentifierExtractor tenantIdentifierExtractor, 
+            ITenantRecordResolver<TTenantRecord> tenantRecordResolver,  MultitenancyNotifications<TTenantRecord> notifications)
         {
-            this.tenantNameExtractor = tenantNameExtractor;
-            this.tenantResolver = tenantResolver;
-            this.notifications = notifications;
             this.next = next;
+            this.tenantIdentifierExtractor = tenantIdentifierExtractor;
+            this.tenantRecordResolver = tenantRecordResolver;
+            this.notifications = notifications;
         }
 
         public async Task Invoke(IOwinContext context)
         {
-            if (!this.tenantNameExtractor.CanExtract(context))
+            if (!this.tenantIdentifierExtractor.CanExtract(context))
             {
                 await this.next();
                 return;
             }
 
-            string name = this.tenantNameExtractor.GetName(context);
+            string identifier = this.tenantIdentifierExtractor.GetIdentifier(context);
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(identifier))
             {
-                await this.notifications.TenantNameNotFound(context);
+                await this.notifications.TenantIdentifierNotFound(context);
                 return;
             }
 
-            TTenantRecord tenantRecord = this.tenantResolver.GetTenant(name);
+            TTenantRecord tenantRecord = this.tenantRecordResolver.GetTenant(identifier);
             if (tenantRecord == null)
             {
                 await this.notifications.TenantRecordNotFound(context);

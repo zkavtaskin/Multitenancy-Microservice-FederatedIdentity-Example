@@ -4,18 +4,18 @@ using Server.Service.Tenants;
 
 namespace Web.Middleware
 {
-    public class TenantResolverCacheDecorator : ITenantResolver<TenantDto>
+    public class TenantRecordResolverCacheDecorator : ITenantRecordResolver<TenantDto>
     {
-        readonly TenantResolver tenantResolver;
+        readonly TenantRecordResolver tenantRecordResolver;
 
-        public TenantResolverCacheDecorator(TenantResolver tenantResolver)
+        public TenantRecordResolverCacheDecorator(TenantRecordResolver tenantRecordResolver)
         {
-            this.tenantResolver = tenantResolver;
+            this.tenantRecordResolver = tenantRecordResolver;
         }
 
-        public TenantDto GetTenant(string tenantName)
+        public TenantDto GetTenant(string tenantIdentifier)
         {
-            string cacheKey = $"tenantName:{tenantName}";
+            string cacheKey = $"tenantIdentifier:{tenantIdentifier}";
 
             TenantDto tenant = (TenantDto)MemoryCache.Default[cacheKey];
 
@@ -24,7 +24,7 @@ namespace Web.Middleware
                 return tenant;
             }
 
-            tenant = this.tenantResolver.GetTenant(tenantName);
+            tenant = this.tenantRecordResolver.GetTenant(tenantIdentifier);
             if (tenant == null)
             {
                 return null;

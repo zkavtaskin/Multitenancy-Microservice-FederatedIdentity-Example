@@ -5,7 +5,7 @@ using Microsoft.Owin;
 
 namespace Web.Middleware
 {
-    public class RouteDataTokensTenantNameExtractor : ITenantNameExtractor
+    public class RouteDataTokensTenantIdentifierExtractor : ITenantIdentifierExtractor
     {
         public bool CanExtract(IOwinContext context)
         {
@@ -13,7 +13,7 @@ namespace Web.Middleware
             return routeData != null && routeData.DataTokens.ContainsValue("webclient_multitenancy");
         }
 
-        public string GetName(IOwinContext context)
+        public string GetIdentifier(IOwinContext context)
         {
             if (!this.CanExtract(context))
                 return null;

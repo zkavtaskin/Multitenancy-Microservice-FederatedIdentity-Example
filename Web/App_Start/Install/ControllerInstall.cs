@@ -30,14 +30,14 @@ namespace Web.App_Start.Install
             container.Register(Component.For<MultitenancyMiddleware<TenantDto>>()
                 .ImplementedBy<MultitenancyMiddleware<TenantDto>>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
-            container.Register(Component.For<ITenantNameExtractor>()
-                .ImplementedBy<RouteDataTokensTenantNameExtractor>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
+            container.Register(Component.For<ITenantIdentifierExtractor>()
+                .ImplementedBy<RouteDataTokensTenantIdentifierExtractor>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
-            container.Register(Component.For<TenantResolver>()
-                .ImplementedBy<TenantResolver>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
+            container.Register(Component.For<TenantRecordResolver>()
+                .ImplementedBy<TenantRecordResolver>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
-            container.Register(Component.For<Middleware.ITenantResolver<TenantDto>>()
-                .ImplementedBy<TenantResolverCacheDecorator>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
+            container.Register(Component.For<Middleware.ITenantRecordResolver<TenantDto>>()
+                .ImplementedBy<TenantRecordResolverCacheDecorator>().LifeStyle.Is(Castle.Core.LifestyleType.PerWebRequest));
 
         }
     }
