@@ -11,7 +11,7 @@ namespace Web.Middleware
         public TenantRecordResolverCacheDecorator(TenantRecordResolver tenantRecordResolver)
         {
             this.tenantRecordResolver = tenantRecordResolver;
-        }
+        } 
 
         public TenantDto GetTenant(string tenantIdentifier)
         {
