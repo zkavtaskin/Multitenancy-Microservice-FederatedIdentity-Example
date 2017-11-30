@@ -11,7 +11,7 @@ Please do note that this repository currently does not contain microservice exam
 
 [ASP.NET MVC Multitenancy, Part 1 - Routing with OWIN](http://www.zankavtaskin.com/2017/08/aspnet-mvc-multitenant-routing-with-owin.html)
 
-ASP.NET MVC Multitenancy, Part 2 - OpenID Connect authentication (article is currently being written, code is already available)
+[ASP.NET MVC Multitenancy, Part 2 - OpenID Connect authentication](http://www.zankavtaskin.com/2017/11/aspnet-mvc-multitenancy-part-2-openid.html)
 
 ASP.NET MVC Multitenancy, Part 3 - Wiring up infrastructure (article is currently being written, code is already available)
 
