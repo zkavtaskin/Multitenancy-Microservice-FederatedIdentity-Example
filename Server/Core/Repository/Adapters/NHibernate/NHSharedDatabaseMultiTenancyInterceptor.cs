@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using NHibernate;
 using NHibernate.Type;
 using Server.Service;
@@ -12,7 +8,7 @@ namespace Server.Core.Repository.Adapters.NHibernate
 {
     public class NHSharedDatabaseMultiTenancyInterceptor : EmptyInterceptor
     {
-        private readonly TenantContext tenantContext;
+        readonly TenantContext tenantContext;
 
         public NHSharedDatabaseMultiTenancyInterceptor(TenantContext tenantContext)
         {
