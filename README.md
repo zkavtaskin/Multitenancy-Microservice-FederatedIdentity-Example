@@ -15,5 +15,7 @@ Please do note that this repository currently does not contain microservice exam
 
 [ASP.NET MVC Multitenancy, Part 3 - NHibernate Tenant Data Filtering and Shared Database](http://www.zankavtaskin.com/2017/12/aspnet-mvc-multitenancy-nhinbernate-shared-database-tenant-data-filtering.html)
 
+ASP.NET MVC Multitenancy, Part 4 - Authorisation
+
 [Basic SaaS conversion guide, migrate your application to the Azure Cloud]( http://www.zankavtaskin.com/2016/12/basic-saas-conversion-guide-migrate.html)
 
