@@ -29,7 +29,7 @@ ASP.NET MVC Multitenancy, Part 4 - Authorisation
 
 ![alt text](READMEArtefacts/baseline.png "Baseline SQL")
 
-This will create stoptheline database in your SQL sever. 
+This will create stoptheline database in your SQL server. 
 
 ### Step 3 - Update Web.config connection string
 
@@ -50,13 +50,13 @@ Once you are done you should see something like this:
 
 ![alt text](READMEArtefacts/create.png "Create Account")
 
-Fill everything in use the client id that Google has given you when you have created your auth 2.0 credentials. For authority just use: https://accounts.google.com
+Fill everything in use the client id that Google has given you when you have created your auth 2.0 credentials. For authority just use https://accounts.google.com
 
-Before you press create account, please whitelist your URL, how do you know what your URL is? Well this is it:
+Before you press "create account", please whitelist your URL, how do you know what your URL is? You get a preview:
 
 ![alt text](READMEArtefacts/urlpreview.png "URL Preview")
 
-Now that you know what it is go to your Google Web Application credential account and add your URL to the Authorized redirect URIs:
+Now that you know what it is go to your Google web application credential account and add your URL to the "Authorized redirect URIs":
 
 ![alt text](READMEArtefacts/authdetail.png "URL Preview")
 
