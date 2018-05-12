@@ -9,6 +9,8 @@ Please do note that this repository currently does not contain microservice exam
 
 ### Articles 
 
+[ASP.NET MVC Multitenancy, Part 0 - Subdomain VS URL Path](http://www.zankavtaskin.com/2018/05/aspnet-mvc-multitenancy-part-0.html)
+
 [ASP.NET MVC Multitenancy, Part 1 - Routing with OWIN](http://www.zankavtaskin.com/2017/08/aspnet-mvc-multitenant-routing-with-owin.html)
 
 [ASP.NET MVC Multitenancy, Part 2 - OpenID Connect authentication](http://www.zankavtaskin.com/2017/11/aspnet-mvc-multitenancy-part-2-openid.html)
