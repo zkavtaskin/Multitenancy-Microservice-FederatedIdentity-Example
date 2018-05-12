@@ -288,3 +288,4 @@ __pycache__/
 *.xsd.cs
 # Custom
 Web.Release.config
+Web.Debug.config
