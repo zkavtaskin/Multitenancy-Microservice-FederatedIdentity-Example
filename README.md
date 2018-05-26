@@ -8,6 +8,7 @@ To supplement blog articles on multitenancy, microservices and federated identit
 Please do note that this repository currently does not contain microservice examples just yet, right now it covers multitenancy and federated identity. Please use this for theoretical / educational purposes only. 
 
 ## Articles 
+[ASP.NET MVC Multitenancy - Introduction & Architecture Overview](http://www.zankavtaskin.com/2018/05/aspnet-mvc-multitenancy-introduction.html)
 
 [ASP.NET MVC Multitenancy, Part 0 - Subdomain VS URL Path](http://www.zankavtaskin.com/2018/05/aspnet-mvc-multitenancy-part-0.html)
 
@@ -20,6 +21,8 @@ Please do note that this repository currently does not contain microservice exam
 [ASP.NET MVC Multitenancy, Part 4 - Authorisation](http://www.zankavtaskin.com/2018/05/aspnet-mvc-multitenancy-part-4.html)
 
 [Basic SaaS conversion guide, migrate your application to the Azure Cloud]( http://www.zankavtaskin.com/2016/12/basic-saas-conversion-guide-migrate.html)
+
+![alt text](READMEArtefacts/Architecture.png "Simple Architecture")
 
 ## Setup Instructions
 
