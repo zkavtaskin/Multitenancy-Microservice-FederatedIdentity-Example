@@ -20,6 +20,8 @@ Please do note that this repository currently does not contain microservice exam
 
 [ASP.NET MVC Multitenancy, Part 4 - Authorisation](http://www.zankavtaskin.com/2018/05/aspnet-mvc-multitenancy-part-4.html)
 
+[WROC# Conference Recording - Developing multi-tenant SaaS business applications on Azure](https://vimeo.com/289247222)
+
 [Basic SaaS conversion guide, migrate your application to the Azure Cloud]( http://www.zankavtaskin.com/2016/12/basic-saas-conversion-guide-migrate.html)
 
 ![alt text](READMEArtefacts/Architecture.png "Simple Architecture")
